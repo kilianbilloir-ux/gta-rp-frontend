@@ -1,62 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - GTA RP ORG</title>
 
-
-    <title>Connexion - GTA RP ORG</title>
-
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="stylesheet" href="css/login.css">
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 
+<body>
 
 
-
-<body class="dark-theme">
-
-
-
-
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
 
-<div class="nav-container">
+<div class="brand">
+
+<div class="brand-mark">
+G
+</div>
+
+GTA RP ORG
+
+</div>
 
 
-    <div class="nav-logo">
 
+<div class="nav-actions">
 
-        <a href="index.html">
-
-
-            <span class="logo-icon">
-                🏢
-            </span>
-
-
-            <span>
-                GTA RP ORG
-            </span>
-
-
-        </a>
-
-
-    </div>
-
-
+<a href="index.html" class="btn btn-secondary">
+Accueil
+</a>
 
 </div>
 
@@ -67,208 +48,67 @@
 
 
 
+<!-- CONNEXION -->
 
 
+<main class="auth-page">
 
 
-<div class="auth-container">
+<div class="auth-card">
 
 
-
-<div class="auth-box">
-
-
-
-
-
-
-<div class="auth-header">
-
-
-<h1>
-
+<h2>
 Connexion
+</h2>
 
-</h1>
 
 
-<p>
-
-Accédez à votre compte
-
+<p class="auth-sub">
+Accédez à votre organisation
 </p>
 
 
-</div>
+
+
+<form>
 
 
 
+<div class="field">
 
-
-
-
-
-
-<div
-id="messageBox"
-class="message-box hidden">
-
-</div>
-
-
-
-
-
-
-
-
-
-<form
-id="loginForm"
-class="auth-form">
-
-
-
-
-
-<div class="form-group">
-
-
-<label for="username">
-
-Pseudo
-
+<label>
+Identifiant
 </label>
 
-
-
-<input
-
-type="text"
-
-id="username"
-
-name="username"
-
-placeholder="Entrez votre pseudo"
-
-required
-
-autocomplete="username"
-
->
-
-
+<input 
+type="text" 
+placeholder="Votre identifiant">
 
 </div>
 
 
 
 
+<div class="field">
 
-
-
-
-
-<div class="form-group">
-
-
-<label for="pin">
-
-PIN (4 chiffres)
-
+<label>
+Mot de passe
 </label>
 
-
-
-
-<input
-
-type="password"
-
-id="pin"
-
-name="pin"
-
-placeholder="••••"
-
-maxlength="4"
-
-pattern="[0-9]{4}"
-
-required
-
-autocomplete="current-password"
-
->
-
-
-
-<small>
-
-Entrez vos 4 chiffres PIN
-
-</small>
-
-
-
+<input 
+type="password" 
+placeholder="Votre mot de passe">
 
 </div>
 
 
 
 
-
-
-
-
-
-<div class="form-group checkbox">
-
-
-<input
-
-type="checkbox"
-
-id="remember"
-
-name="remember"
-
->
-
-
-
-<label for="remember">
-
-Se souvenir de moi
-
-</label>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<button
-
-type="submit"
-
-class="btn btn-primary btn-full">
-
+<button class="btn btn-primary btn-block">
 
 Se connecter
 
-
 </button>
-
-
 
 
 
@@ -277,83 +117,25 @@ Se connecter
 
 
 
-
-
-
-
-
 <div class="auth-footer">
 
-
-<p>
-
-
-Vous n'avez pas de compte ?
+Pas encore de compte ?
 
 <a href="register.html">
-
-S'inscrire
-
-</a>
-
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="auth-back">
-
-
-<a href="index.html">
-
-← Retour à l'accueil
-
+Créer un compte
 </a>
 
 
 </div>
 
 
-
-
-
-
-
-
 </div>
 
 
-</div>
-
-
-
-
-
-
-
-
-
-<script src="js/utils.js"></script>
-
-<script src="js/api.js"></script>
-
-<script src="js/auth.js"></script>
-
-
+</main>
 
 
 
 </body>
-
 
 </html>
