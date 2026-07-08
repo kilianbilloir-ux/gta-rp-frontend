@@ -13,257 +13,445 @@
 
 </head>
 
+
 <body class="dark-theme">
+
+
 
 <nav class="navbar">
 
-    <div class="nav-container">
 
-        <div class="nav-logo">
+<div class="nav-container">
 
-            <a href="index.html">
 
-                <span class="logo-icon">🏢</span>
-                <span>GTA RP ORG</span>
 
-            </a>
+    <div class="nav-logo">
 
-        </div>
+        <a href="index.html">
 
-        <ul class="nav-menu">
+            <span class="logo-icon">
+                🏢
+            </span>
 
-            <li>
-                <a href="dashboard.html" class="nav-link">
-                    Dashboard
-                </a>
-            </li>
+            <span>
+                GTA RP ORG
+            </span>
 
-            <li>
-                <a href="members.html" class="nav-link active">
-                    Membres
-                </a>
-            </li>
-
-            <li>
-                <a href="stats.html" class="nav-link">
-                    Statistiques
-                </a>
-            </li>
-
-            <li class="nav-user">
-
-                <span id="userDisplay">
-                    Chargement...
-                </span>
-
-                <button
-                    id="logoutBtn"
-                    class="btn btn-small">
-
-                    Déconnexion
-
-                </button>
-
-            </li>
-
-        </ul>
+        </a>
 
     </div>
 
-</nav>
 
-<div class="container main-content">
 
-    <div class="admin-header">
 
-        <h1>Liste des membres</h1>
 
-        <p>
-            Consultez et gérez tous les membres de l'organisation.
-        </p>
 
-    </div>
+<ul class="nav-menu">
 
-    <div
-        id="messageBox"
-        class="message-box hidden">
 
-    </div>
-    <!-- Barre d'actions -->
+    <li>
 
-<section class="section">
+        <a href="dashboard.html" class="nav-link">
+            Dashboard
+        </a>
 
-    <div class="section-header">
+    </li>
 
-        <h2>
-            Membres de l'organisation
-        </h2>
+
+
+    <li>
+
+        <a href="members.html" class="nav-link active">
+            Membres
+        </a>
+
+    </li>
+
+
+
+    <li>
+
+        <a href="stats.html" class="nav-link">
+            Statistiques
+        </a>
+
+    </li>
+
+
+
+    <li>
+
+        <a href="admin.html" class="nav-link">
+            Admin
+        </a>
+
+    </li>
+
+
+
+
+
+    <li class="nav-user">
+
+
+        <span id="userDisplay">
+            Chargement...
+        </span>
+
+
 
         <button
-            id="refreshMembersBtn"
-            class="btn btn-small">
+        id="logoutBtn"
+        class="btn btn-small">
 
-            Actualiser
+            Déconnexion
 
         </button>
 
-    </div>
 
-</section>
-
+    </li>
 
 
-<!-- Statistiques rapides -->
-
-<div class="stats-grid">
-
-    <div class="stat-card">
-
-        <div class="stat-header">
-
-            <span class="stat-icon">👥</span>
-
-            <span class="stat-label">
-                Total membres
-            </span>
-
-        </div>
-
-        <div
-            class="stat-value"
-            id="totalMembers">
-
-            0
-
-        </div>
-
-    </div>
+</ul>
 
 
 
-    <div class="stat-card">
 
-        <div class="stat-header">
+</div>
 
-            <span class="stat-icon">👑</span>
 
-            <span class="stat-label">
-                Administrateurs
-            </span>
-
-        </div>
-
-        <div
-            class="stat-value"
-            id="totalAdmins">
-
-            0
-
-        </div>
-
-    </div>
+</nav>
 
 
 
-    <div class="stat-card">
 
-        <div class="stat-header">
 
-            <span class="stat-icon">🚫</span>
 
-            <span class="stat-label">
-                Membres bannis
-            </span>
 
-        </div>
 
-        <div
-            class="stat-value"
-            id="totalBanned">
 
-            0
+<div class="container main-content">
 
-        </div>
 
-    </div>
+
+
+
+
+<div class="admin-header">
+
+
+<h1>
+Liste des membres
+</h1>
+
+
+<p>
+Consultez les membres de l'organisation.
+</p>
+
+
 
 </div>
 
 
 
-<!-- Liste des membres -->
+
+
+
+
+
+
+<div 
+id="messageBox"
+class="message-box hidden">
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Recherche -->
 
 <section class="section">
 
-    <div
-        id="membersList"
-        class="members-table">
 
-        <p class="loading">
 
-            Chargement des membres...
+<div class="section-header">
 
-        </p>
 
-    </div>
+<h2>
+Membres de l'organisation
+</h2>
+
+
+
+<button
+id="refreshMembersBtn"
+class="btn btn-small">
+
+Actualiser
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<input
+
+type="text"
+
+id="memberSearch"
+
+class="form-input"
+
+placeholder="Rechercher un membre..."
+
+>
+
+
+
+
 
 </section>
-<!-- Modal d'informations -->
 
-<div id="memberModal" class="modal hidden">
 
-    <div class="modal-content">
 
-        <div class="modal-header">
 
-            <h2>
-                Informations du membre
-            </h2>
 
-            <button
-                class="close-modal">
 
-                &times;
 
-            </button>
 
-        </div>
 
-        <div
-            id="memberModalBody"
-            class="modal-body">
+<!-- Statistiques -->
 
-        </div>
 
-    </div>
+
+<div class="stats-grid">
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+👥
+</span>
+
+
+<span class="stat-label">
+Total membres
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="totalMembers">
+
+0
 
 </div>
 
 
 
 </div>
+
+
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+👑
+</span>
+
+
+<span class="stat-label">
+Administrateurs
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="totalAdmins">
+
+0
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+🚫
+</span>
+
+
+<span class="stat-label">
+Membres bannis
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="totalBanned">
+
+0
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Liste -->
+
+
+
+<section class="section">
+
+
+
+<div
+
+id="membersList"
+
+class="members-table">
+
+
+
+<p class="loading">
+
+Chargement des membres...
+
+</p>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
 
 
 
 <footer class="footer">
 
-    <div class="container">
 
-        <p>
-            &copy; 2026 GTA RP Organization
-        </p>
+<div class="container">
 
-    </div>
+
+<p>
+
+© 2026 GTA RP Organization
+
+</p>
+
+
+</div>
+
 
 </footer>
 
 
 
+
+
+
+
+
 <script src="js/utils.js"></script>
+
 <script src="js/api.js"></script>
+
 <script src="js/auth.js"></script>
+
 <script src="js/members.js"></script>
 
+
+
 </body>
+
 
 </html>
