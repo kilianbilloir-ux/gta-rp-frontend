@@ -89,3 +89,181 @@
         class="message-box hidden">
 
     </div>
+    <!-- Barre d'actions -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2>
+            Membres de l'organisation
+        </h2>
+
+        <button
+            id="refreshMembersBtn"
+            class="btn btn-small">
+
+            Actualiser
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- Statistiques rapides -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-header">
+
+            <span class="stat-icon">👥</span>
+
+            <span class="stat-label">
+                Total membres
+            </span>
+
+        </div>
+
+        <div
+            class="stat-value"
+            id="totalMembers">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-header">
+
+            <span class="stat-icon">👑</span>
+
+            <span class="stat-label">
+                Administrateurs
+            </span>
+
+        </div>
+
+        <div
+            class="stat-value"
+            id="totalAdmins">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-header">
+
+            <span class="stat-icon">🚫</span>
+
+            <span class="stat-label">
+                Membres bannis
+            </span>
+
+        </div>
+
+        <div
+            class="stat-value"
+            id="totalBanned">
+
+            0
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Liste des membres -->
+
+<section class="section">
+
+    <div
+        id="membersList"
+        class="members-table">
+
+        <p class="loading">
+
+            Chargement des membres...
+
+        </p>
+
+    </div>
+
+</section>
+<!-- Modal d'informations -->
+
+<div id="memberModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Informations du membre
+            </h2>
+
+            <button
+                class="close-modal">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <div
+            id="memberModalBody"
+            class="modal-body">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</div>
+
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <p>
+            &copy; 2026 GTA RP Organization
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/members.js"></script>
+
+</body>
+
+</html>
