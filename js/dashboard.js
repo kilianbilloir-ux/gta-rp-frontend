@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-
     try {
-
 
         const user = await getMe();
 
@@ -11,71 +9,53 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("userDisplay");
 
         if(userDisplay){
-
             userDisplay.textContent =
             user.username;
-
         }
-
 
 
         const profileUsername =
         document.getElementById("profileUsername");
 
         if(profileUsername){
-
             profileUsername.textContent =
             user.username;
-
         }
-
 
 
         const profileGrade =
         document.getElementById("profileGrade");
 
         if(profileGrade){
-
             profileGrade.textContent =
             user.grade || "Membre";
-
         }
-
 
 
         const greeting =
         document.getElementById("userGreeting");
 
         if(greeting){
-
             greeting.textContent =
             "Bienvenue " + user.username;
-
         }
 
 
-
         await loadDashboardStats();
-
         await loadActivities();
-
 
 
     } catch(error) {
 
-
         window.location.href =
         "login.html";
-
 
     }
 
 
 
     const form =
-    document.getElementById(
-        "addEntryForm"
-    );
+    document.getElementById("addEntryForm");
 
 
     if(form){
@@ -90,9 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     const refresh =
-    document.getElementById(
-        "refreshBtn"
-    );
+    document.getElementById("refreshBtn");
 
 
     if(refresh){
@@ -105,7 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
+
 });
+
 
 
 
@@ -116,9 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadDashboardStats(){
 
-
     try{
-
 
         const data =
         await apiGet(
@@ -128,10 +106,7 @@ async function loadDashboardStats(){
 
 
         const personalGains =
-        document.getElementById(
-            "personalGains"
-        );
-
+        document.getElementById("personalGains");
 
         if(personalGains){
 
@@ -143,10 +118,7 @@ async function loadDashboardStats(){
 
 
         const actionsTotal =
-        document.getElementById(
-            "actionsTotal"
-        );
-
+        document.getElementById("actionsTotal");
 
         if(actionsTotal){
 
@@ -158,10 +130,7 @@ async function loadDashboardStats(){
 
 
         const braquagesTotal =
-        document.getElementById(
-            "braquagesTotal"
-        );
-
+        document.getElementById("braquagesTotal");
 
         if(braquagesTotal){
 
@@ -173,10 +142,7 @@ async function loadDashboardStats(){
 
 
         const ventesTotal =
-        document.getElementById(
-            "ventesTotal"
-        );
-
+        document.getElementById("ventesTotal");
 
         if(ventesTotal){
 
@@ -186,18 +152,14 @@ async function loadDashboardStats(){
         }
 
 
-
     }catch(error){
-
 
         showMessage(
             error.message,
             "error"
         );
 
-
     }
-
 
 }
 
@@ -210,7 +172,6 @@ async function loadDashboardStats(){
 // ============================
 
 async function addActivity(e){
-
 
     e.preventDefault();
 
@@ -233,35 +194,50 @@ async function addActivity(e){
     const subtype =
     document.getElementById(
         "entrySubtype"
-    ).value;
+    )
+    ?
+    document.getElementById(
+        "entrySubtype"
+    ).value
+    :
+    "";
 
 
 
     const product =
     document.getElementById(
         "entryProduct"
-    ).value;
+    )
+    ?
+    document.getElementById(
+        "entryProduct"
+    ).value
+    :
+    "";
 
 
 
     const quantity =
     document.getElementById(
         "entryQuantity"
-    ).value;
+    )
+    ?
+    document.getElementById(
+        "entryQuantity"
+    ).value
+    :
+    1;
 
 
 
     if(!category || !amount){
 
-
         showMessage(
-            "Remplis les champs obligatoires",
+            "Choisis une activité et un montant",
             "error"
         );
 
-
         return;
-
 
     }
 
@@ -274,15 +250,12 @@ async function addActivity(e){
 
     if(money <= 0){
 
-
         showMessage(
             "Le montant doit être supérieur à 0",
             "error"
         );
 
-
         return;
-
 
     }
 
@@ -291,20 +264,17 @@ async function addActivity(e){
     // Limite braquage
 
     if(
-        category.toLowerCase() === "braquage"
+        category === "braquage"
         &&
         money > 120000
     ){
-
 
         showMessage(
             "Un braquage ne peut pas dépasser 120000 $",
             "error"
         );
 
-
         return;
-
 
     }
 
@@ -319,26 +289,16 @@ async function addActivity(e){
             "/api/activity/add",
             {
 
-
                 category,
-
 
                 amount: money,
 
-
                 subtype,
-
 
                 product,
 
-
                 quantity:
-                quantity
-                ?
-                Number(quantity)
-                :
-                1
-
+                Number(quantity) || 1
 
             }
         );
@@ -352,11 +312,17 @@ async function addActivity(e){
 
 
 
-        document
-        .getElementById(
+        const form =
+        document.getElementById(
             "addEntryForm"
-        )
-        .reset();
+        );
+
+
+        if(form){
+
+            form.reset();
+
+        }
 
 
 
@@ -368,12 +334,10 @@ async function addActivity(e){
 
     }catch(error){
 
-
         showMessage(
             error.message,
             "error"
         );
-
 
     }
 
@@ -389,7 +353,6 @@ async function addActivity(e){
 // ============================
 
 async function loadActivities(){
-
 
     const box =
     document.getElementById(
@@ -420,13 +383,10 @@ async function loadActivities(){
             data.activities.length === 0
         ){
 
-
             box.innerHTML =
             "<p>Aucune activité enregistrée.</p>";
 
-
             return;
-
 
         }
 
@@ -437,9 +397,7 @@ async function loadActivities(){
 
             box.innerHTML += `
 
-
             <div class="activity-entry">
-
 
                 <h3>
                     ${activity.category}
@@ -460,7 +418,6 @@ async function loadActivities(){
                 </p>
 
 
-
                 ${
                     activity.product
                     ?
@@ -475,23 +432,18 @@ async function loadActivities(){
                 }
 
 
-
                 <p>
                     Quantité :
                     ${activity.quantity || 1}
                 </p>
 
 
-
                 <small>
-                    ${
-                    formatDateTime(activity.date)
-                    }
+                    ${formatDateTime(activity.date)}
                 </small>
 
 
             </div>
-
 
             `;
 
@@ -502,13 +454,10 @@ async function loadActivities(){
 
     }catch(error){
 
-
         box.innerHTML =
         "<p>Impossible de charger l'historique.</p>";
 
-
     }
-
 
 }
 
@@ -528,7 +477,6 @@ document.getElementById(
 
 
 if(logoutButton){
-
 
     logoutButton.addEventListener(
         "click",
@@ -559,6 +507,5 @@ if(logoutButton){
 
         }
     );
-
 
 }
