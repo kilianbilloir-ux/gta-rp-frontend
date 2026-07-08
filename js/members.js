@@ -15,6 +15,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         await loadMembers();
+        const refreshBtn =
+document.getElementById(
+    "refreshMembersBtn"
+);
+
+
+if(refreshBtn){
+
+    refreshBtn.addEventListener(
+        "click",
+        loadMembers
+    );
+
+}
 
 
 
@@ -114,6 +128,52 @@ async function loadMembers(){
 // ============================
 
 function displayMembers(members){
+
+
+    const total =
+    document.getElementById(
+        "totalMembers"
+    );
+
+
+    const admins =
+    document.getElementById(
+        "totalAdmins"
+    );
+
+
+    const banned =
+    document.getElementById(
+        "totalBanned"
+    );
+
+
+    if(total){
+
+        total.textContent =
+        members.length;
+
+    }
+
+
+    if(admins){
+
+        admins.textContent =
+        members.filter(
+            m => m.isAdmin
+        ).length;
+
+    }
+
+
+    if(banned){
+
+        banned.textContent =
+        members.filter(
+            m => m.banned
+        ).length;
+
+    }
 
 
     const box =
