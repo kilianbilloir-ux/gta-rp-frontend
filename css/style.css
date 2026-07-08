@@ -643,3 +643,69 @@ tbody tr:last-child td { border-bottom: none; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+/* ===========================
+   MENU MOBILE DASHBOARD
+=========================== */
+
+.menu-btn{
+    display:none;
+    width:42px;
+    height:42px;
+    background:#161f16;
+    border:1px solid #2a322a;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+}
+
+.dashboard-menu{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:260px;
+    height:100%;
+    background:#121212;
+    border-right:1px solid #2a322a;
+    transition:.3s;
+    z-index:9999;
+    padding:20px;
+}
+
+.dashboard-menu.open{
+    left:0;
+}
+
+.dashboard-menu .brand{
+    margin-bottom:25px;
+}
+
+.dashboard-menu .side-link{
+    display:flex;
+    margin-bottom:8px;
+}
+
+.menu-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:9998;
+}
+
+.menu-overlay.show{
+    display:block;
+}
+
+@media(max-width:860px){
+
+.sidebar{
+display:none;
+}
+
+.menu-btn{
+display:flex;
+}
+
+}
