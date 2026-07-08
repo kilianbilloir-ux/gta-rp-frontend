@@ -1,110 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Membres - GTA RP</title>
+
+    <title>Membres - GTA RP ORG</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
+
 </head>
+
 <body class="dark-theme">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <span class="logo-icon">🏢</span>
-                    <span>GTA RP ORG</span>
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <div class="nav-logo">
+
+            <a href="index.html">
+
+                <span class="logo-icon">🏢</span>
+                <span>GTA RP ORG</span>
+
+            </a>
+
+        </div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="dashboard.html" class="nav-link">
+                    Dashboard
                 </a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="admin.html" class="nav-link">Admin Panel</a></li>
-                <li><a href="members.html" class="nav-link active">Membres</a></li>
-                <li><a href="stats.html" class="nav-link">Statistiques</a></li>
-                <li class="nav-user">
-                    <span id="userDisplay">Admin</span>
-                    <button id="logoutBtn" class="btn btn-small">Déconnexion</button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+            </li>
 
-    <div class="container main-content">
-        <!-- Header -->
-        <div class="dashboard-header">
-            <div class="header-left">
-                <h1>Gestion des Membres</h1>
-                <p>Administrez les membres de votre organisation</p>
-            </div>
-            <div class="header-right">
-                <button id="refreshBtn" class="btn btn-primary">Actualiser</button>
-            </div>
-        </div>
+            <li>
+                <a href="members.html" class="nav-link active">
+                    Membres
+                </a>
+            </li>
 
-        <!-- Messages -->
-        <div id="messageBox" class="message-box hidden"></div>
+            <li>
+                <a href="stats.html" class="nav-link">
+                    Statistiques
+                </a>
+            </li>
 
-        <!-- Filtres et recherche -->
-        <div class="filters-section">
-            <input 
-                type="text" 
-                id="searchInput" 
-                placeholder="Rechercher un membre..."
-                class="search-input"
-            >
-            <select id="gradeFilter" class="filter-select">
-                <option value="">Tous les grades</option>
-                <option value="boss">Boss</option>
-                <option value="vice-boss">Vice Boss</option>
-                <option value="captain">Captain</option>
-                <option value="lieutenant">Lieutenant</option>
-                <option value="soldier">Soldier</option>
-                <option value="recruit">Recruit</option>
-            </select>
-        </div>
+            <li class="nav-user">
 
-        <!-- Tableau des membres -->
-        <section class="section">
-            <div id="membersList" class="members-container">
-                <p class="loading">Chargement des membres...</p>
-            </div>
-        </section>
+                <span id="userDisplay">
+                    Chargement...
+                </span>
+
+                <button
+                    id="logoutBtn"
+                    class="btn btn-small">
+
+                    Déconnexion
+
+                </button>
+
+            </li>
+
+        </ul>
+
     </div>
 
-    <!-- Modal d'action sur membre -->
-    <div id="actionModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Action Membre</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="actionForm">
-                    <input type="hidden" id="memberId">
-                    <div id="formContent"></div>
-                    <div class="modal-buttons">
-                        <button type="submit" class="btn btn-primary">Confirmer</button>
-                        <button type="button" class="btn btn-secondary close-modal">Annuler</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+</nav>
+
+<div class="container main-content">
+
+    <div class="admin-header">
+
+        <h1>Liste des membres</h1>
+
+        <p>
+            Consultez et gérez tous les membres de l'organisation.
+        </p>
+
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 GTA RP Organization. Tous droits réservés.</p>
-        </div>
-    </footer>
+    <div
+        id="messageBox"
+        class="message-box hidden">
 
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/members.js"></script>
-</body>
-</html>
+    </div>
