@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,7 +10,9 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
+
 </head>
+
 
 <body class="dark-theme">
 
@@ -17,15 +21,25 @@
 
 <div class="nav-container">
 
+
     <div class="nav-logo">
+
         <a href="index.html">
+
             <span class="logo-icon">🏢</span>
-            <span>GTA RP ORG</span>
+
+            <span>
+                GTA RP ORG
+            </span>
+
         </a>
+
     </div>
 
 
+
     <ul class="nav-menu">
+
 
         <li>
             <a href="dashboard.html" class="nav-link active">
@@ -33,11 +47,13 @@
             </a>
         </li>
 
+
         <li>
             <a href="stats.html" class="nav-link">
                 Statistiques
             </a>
         </li>
+
 
         <li>
             <a href="notifications.html" class="nav-link">
@@ -46,17 +62,27 @@
         </li>
 
 
+
         <li class="nav-user">
+
 
             <span id="userDisplay">
                 Chargement...
             </span>
 
-            <button id="logoutBtn" class="btn btn-small">
+
+
+            <button 
+            id="logoutBtn"
+            class="btn btn-small">
+
                 Déconnexion
+
             </button>
 
+
         </li>
+
 
     </ul>
 
@@ -68,23 +94,31 @@
 
 
 
+
 <div class="container main-content">
+
 
 
 <div class="dashboard-header">
 
 
+
 <div class="header-left">
+
 
 <h1>
 Tableau de Bord
 </h1>
 
+
 <p id="userGreeting">
 Bienvenue
 </p>
 
+
 </div>
+
+
 
 
 
@@ -99,7 +133,9 @@ Bienvenue
 </div>
 
 
+
 <div class="user-details">
+
 
 <p id="profileUsername">
 -
@@ -120,16 +156,25 @@ Bienvenue
 </div>
 
 
+
 </div>
 
 
 
 
 
-<div id="messageBox" class="message-box hidden"></div>
+<div 
+id="messageBox"
+class="message-box hidden">
+</div>
 
 
 
+
+
+
+
+<!-- STATISTIQUES -->
 
 
 <div class="stats-grid">
@@ -139,19 +184,29 @@ Bienvenue
 <div class="stat-card">
 
 <div class="stat-header">
-<span class="stat-icon">💰</span>
+
+<span class="stat-icon">
+💰
+</span>
+
 <span class="stat-label">
 Bénéfices personnels
 </span>
+
 </div>
 
 
-<div class="stat-value" id="personalGains">
+<div 
+class="stat-value"
+id="personalGains">
+
 0 $
+
 </div>
 
 
 </div>
+
 
 
 
@@ -159,20 +214,32 @@ Bénéfices personnels
 
 <div class="stat-card">
 
+
 <div class="stat-header">
-<span class="stat-icon">📊</span>
+
+<span class="stat-icon">
+📊
+</span>
+
 <span class="stat-label">
 Actions
 </span>
+
 </div>
 
 
-<div class="stat-value" id="actionsTotal">
+<div 
+class="stat-value"
+id="actionsTotal">
+
 0 $
+
 </div>
 
 
 </div>
+
+
 
 
 
@@ -180,20 +247,35 @@ Actions
 
 <div class="stat-card">
 
+
 <div class="stat-header">
-<span class="stat-icon">🔫</span>
+
+<span class="stat-icon">
+🔫
+</span>
+
 <span class="stat-label">
 Braquages
 </span>
+
 </div>
 
 
-<div class="stat-value" id="braquagesTotal">
+
+<div 
+class="stat-value"
+id="braquagesTotal">
+
 0 $
+
 </div>
 
 
+
 </div>
+
+
+
 
 
 
@@ -201,70 +283,115 @@ Braquages
 
 <div class="stat-card">
 
+
 <div class="stat-header">
-<span class="stat-icon">🛒</span>
+
+<span class="stat-icon">
+🛒
+</span>
+
+
 <span class="stat-label">
 Ventes
 </span>
+
+
 </div>
 
 
-<div class="stat-value" id="ventesTotal">
+
+<div 
+class="stat-value"
+id="ventesTotal">
+
 0 $
-</div>
-
 
 </div>
 
 
+</div>
+
+
 
 </div>
-<!-- Ajouter une activité -->
+
+
+
+
+
+
+
+
+
+<!-- AJOUT ACTIVITE -->
+
 
 <section class="section">
 
 
 <div class="section-header">
 
+
 <h2>
 Ajouter une activité financière
 </h2>
+
 
 </div>
 
 
 
-<form id="addEntryForm" class="form-container">
+
+
+<form 
+id="addEntryForm"
+class="form-container">
+
+
+
 
 
 
 <div class="form-row">
 
 
+
+
+
 <div class="form-group">
 
-<label for="entryCategory">
+
+<label>
 Catégorie
 </label>
 
 
-<select id="entryCategory" required>
+
+<select 
+id="entryCategory"
+required>
+
 
 <option value="">
 -- Choisir --
 </option>
 
+
 <option value="action">
 Action
 </option>
+
 
 <option value="braquage">
 Braquage
 </option>
 
+
 <option value="vente">
 Vente
 </option>
+
+
 
 </select>
 
@@ -275,26 +402,42 @@ Vente
 
 
 
+
+
 <div class="form-group">
 
-<label for="entryAmount">
+
+<label>
 Montant ($)
 </label>
 
 
-<input 
+
+<input
+
 type="number"
+
 id="entryAmount"
+
 placeholder="5000"
+
 min="1"
+
 required
+
 >
 
 
 </div>
 
 
+
+
+
 </div>
+
+
+
 
 
 
@@ -302,16 +445,54 @@ required
 
 <div class="form-group">
 
-<label for="entrySubtype">
-Type d'activité
+
+<label>
+Sous-catégorie
 </label>
 
 
-<input
-type="text"
-id="entrySubtype"
-placeholder="ATM, Go Fast, Supérette..."
->
+
+<select id="entrySubtype">
+
+
+
+<option value="">
+-- Choisir --
+</option>
+
+
+
+<option value="ATM">
+ATM
+</option>
+
+
+
+<option value="Go Fast">
+Go Fast
+</option>
+
+
+
+<option value="Supérette">
+Supérette
+</option>
+
+
+
+<option value="Banque">
+Banque
+</option>
+
+
+
+<option value="Autre">
+Autre
+</option>
+
+
+
+</select>
 
 
 </div>
@@ -320,21 +501,33 @@ placeholder="ATM, Go Fast, Supérette..."
 
 
 
+
+
+
 <div class="form-group">
 
-<label for="entryProduct">
+
+<label>
 Produit (vente uniquement)
 </label>
 
 
+
 <input
+
 type="text"
+
 id="entryProduct"
+
 placeholder="Produit vendu"
+
 >
 
 
 </div>
+
+
+
 
 
 
@@ -342,16 +535,23 @@ placeholder="Produit vendu"
 
 <div class="form-group">
 
-<label for="entryQuantity">
+
+<label>
 Quantité
 </label>
 
 
+
 <input
+
 type="number"
+
 id="entryQuantity"
+
 value="1"
+
 min="1"
+
 >
 
 
@@ -361,19 +561,31 @@ min="1"
 
 
 
-<button 
+
+
+
+
+<button
+
 type="submit"
+
 class="btn btn-primary">
+
 
 Ajouter l'activité
 
+
 </button>
+
+
+
 
 
 
 </form>
 
 
+
 </section>
 
 
@@ -381,71 +593,55 @@ Ajouter l'activité
 
 
 
-<!-- Historique -->
+
+
+
+<!-- HISTORIQUE -->
 
 
 <section class="section">
 
 
 <div class="section-header">
+
 
 <h2>
 Historique des activités
 </h2>
 
 
-<button 
+
+<button
+
 id="refreshBtn"
+
 class="btn btn-small">
 
+
 Actualiser
+
 
 </button>
 
 
+
 </div>
 
 
 
-<div id="entriesList" class="entries-list">
+
+
+<div
+
+id="entriesList"
+
+class="entries-list">
+
 
 <p>
 Chargement...
 </p>
 
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- Notifications -->
-
-
-<section class="section">
-
-
-<div class="section-header">
-
-<h2>
-Notifications
-</h2>
-
-</div>
-
-
-
-<div id="notificationsList">
-
-<p>
-Chargement...
-</p>
 
 </div>
 
@@ -458,7 +654,10 @@ Chargement...
 
 
 
+
+
 </div>
+
 
 
 
@@ -468,13 +667,17 @@ Chargement...
 
 <footer class="footer">
 
+
 <div class="container">
+
 
 <p>
 © 2026 GTA RP Organization
 </p>
 
+
 </div>
+
 
 </footer>
 
@@ -483,11 +686,18 @@ Chargement...
 
 
 
+
+
 <script src="js/utils.js"></script>
+
 <script src="js/api.js"></script>
+
 <script src="js/auth.js"></script>
+
 <script src="js/dashboard.js"></script>
 
 
+
 </body>
+
 </html>
