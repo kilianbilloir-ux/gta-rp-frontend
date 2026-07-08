@@ -1,34 +1,43 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-
     try {
-
 
         const user = await getMe();
 
 
+        const userDisplay =
         document.getElementById(
             "userDisplay"
-        ).textContent =
+        );
+
+
+        if(userDisplay){
+
+            userDisplay.textContent =
             user.username;
+
+        }
 
 
 
         await loadMembers();
+
+
+
         const refreshBtn =
-document.getElementById(
-    "refreshMembersBtn"
-);
+        document.getElementById(
+            "refreshMembersBtn"
+        );
 
 
-if(refreshBtn){
+        if(refreshBtn){
 
-    refreshBtn.addEventListener(
-        "click",
-        loadMembers
-    );
+            refreshBtn.addEventListener(
+                "click",
+                loadMembers
+            );
 
-}
+        }
 
 
 
@@ -47,6 +56,7 @@ if(refreshBtn){
     document.getElementById(
         "memberSearch"
     );
+
 
 
     if(search){
@@ -74,6 +84,7 @@ let membersData = [];
 
 
 
+
 // ============================
 // Charger les membres
 // ============================
@@ -85,6 +96,7 @@ async function loadMembers(){
     document.getElementById(
         "membersList"
     );
+
 
 
     if(!box) return;
@@ -102,7 +114,7 @@ async function loadMembers(){
 
 
         membersData =
-        data.members;
+        data.members || [];
 
 
 
@@ -119,15 +131,29 @@ async function loadMembers(){
         "<p>Impossible de charger les membres.</p>";
 
 
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+
     }
 
 
 }
+
+
+
+
+
+
 // ============================
 // Afficher les membres
 // ============================
 
 function displayMembers(members){
+
 
 
     const total =
@@ -136,16 +162,20 @@ function displayMembers(members){
     );
 
 
+
     const admins =
     document.getElementById(
         "totalAdmins"
     );
 
 
+
     const banned =
     document.getElementById(
         "totalBanned"
     );
+
+
 
 
     if(total){
@@ -156,24 +186,33 @@ function displayMembers(members){
     }
 
 
+
+
     if(admins){
 
         admins.textContent =
         members.filter(
-            m => m.isAdmin
+            member =>
+            member.isAdmin === true
         ).length;
 
     }
+
+
 
 
     if(banned){
 
         banned.textContent =
         members.filter(
-            m => m.banned
+            member =>
+            member.banned === true
         ).length;
 
     }
+
+
+
 
 
     const box =
@@ -182,7 +221,9 @@ function displayMembers(members){
     );
 
 
+
     if(!box) return;
+
 
 
 
@@ -190,8 +231,12 @@ function displayMembers(members){
 
 
 
-    if(!members ||
-       members.length === 0){
+
+
+    if(
+        !members ||
+        members.length === 0
+    ){
 
 
         box.innerHTML =
@@ -200,11 +245,15 @@ function displayMembers(members){
 
         return;
 
+
     }
 
 
 
-    members.forEach(member=>{
+
+
+    members.forEach(member => {
+
 
 
         box.innerHTML += `
@@ -214,26 +263,41 @@ function displayMembers(members){
 
 
             <div class="member-avatar">
+
                 👤
+
             </div>
+
 
 
 
             <div class="member-info">
 
 
+
                 <h3>
+
                     ${member.username}
+
                 </h3>
 
 
 
+
+
                 <p>
+
                     Grade :
+
                     <b>
+
                     ${member.grade || "Membre"}
+
                     </b>
+
                 </p>
+
+
 
 
 
@@ -251,24 +315,47 @@ function displayMembers(members){
 
 
 
+
+
                 <p>
 
                     Gains :
+
                     <b>
+
                     ${member.total || 0} $
+
                     </b>
 
                 </p>
 
 
 
+
+                ${
+                    member.banned
+                    ?
+                    `
+                    <p class="text-danger">
+                    🚫 Banni
+                    </p>
+                    `
+                    :
+                    ""
+                }
+
+
+
             </div>
+
 
 
         </div>
 
 
+
         `;
+
 
 
     });
@@ -276,6 +363,7 @@ function displayMembers(members){
 
 
 }
+
 
 
 
@@ -289,15 +377,21 @@ function displayMembers(members){
 function filterMembers(){
 
 
+
     const search =
     document.getElementById(
         "memberSearch"
-    ).value.toLowerCase();
+    )
+    .value
+    .toLowerCase();
+
+
 
 
 
     const filtered =
-    membersData.filter(member=>{
+    membersData.filter(member => {
+
 
 
         return member.username
@@ -305,7 +399,10 @@ function filterMembers(){
         .includes(search);
 
 
+
     });
+
+
 
 
 
@@ -314,7 +411,11 @@ function filterMembers(){
     );
 
 
+
 }
+
+
+
 
 
 
@@ -331,6 +432,7 @@ document.getElementById(
 
 
 
+
 if(logoutBtn){
 
 
@@ -339,11 +441,29 @@ if(logoutBtn){
         async()=>{
 
 
-            await logout();
+            try{
 
 
-            window.location.href =
-            "login.html";
+                await logout();
+
+
+
+                window.location.href =
+                "login.html";
+
+
+
+            }catch(error){
+
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+
+            }
+
 
 
         }
