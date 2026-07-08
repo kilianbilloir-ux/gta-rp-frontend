@@ -55,6 +55,27 @@ async function getMe(){
 
 // Déconnexion
 async function logout(){
+    // Requête GET simplifiée
+async function apiGet(endpoint){
+
+    return await apiRequest(
+        endpoint,
+        "GET"
+    );
+
+}
+
+
+// Requête POST simplifiée
+async function apiPost(endpoint, data){
+
+    return await apiRequest(
+        endpoint,
+        "POST",
+        data
+    );
+
+}
 
     return await apiRequest(
         "/api/logout",
