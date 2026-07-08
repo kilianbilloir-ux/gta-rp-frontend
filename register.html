@@ -1,66 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription - GTA RP ORG</title>
 
-
-    <title>Inscription - GTA RP ORG</title>
-
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="stylesheet" href="css/login.css">
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 
+<body>
 
 
 
-<body class="dark-theme">
-
-
-
-
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
 
-<div class="nav-container">
+<div class="brand">
+
+<div class="brand-mark">
+G
+</div>
+
+GTA RP ORG
+
+</div>
 
 
-    <div class="nav-logo">
 
+<div class="nav-actions">
 
-        <a href="index.html">
-
-
-            <span class="logo-icon">
-
-                🏢
-
-            </span>
-
-
-            <span>
-
-                GTA RP ORG
-
-            </span>
-
-
-        </a>
-
-
-    </div>
-
-
+<a href="index.html" class="btn btn-secondary">
+Accueil
+</a>
 
 </div>
 
@@ -72,117 +50,43 @@
 
 
 
+<!-- INSCRIPTION -->
+
+
+<main class="auth-page">
+
+
+<div class="auth-card">
 
 
 
-<div class="auth-container">
-
-
-<div class="auth-box">
-
-
+<h2>
+Créer un compte
+</h2>
 
 
 
-
-<div class="auth-header">
-
-
-<h1>
-
-Inscription
-
-</h1>
-
-
-<p>
-
-Créez votre compte
-
+<p class="auth-sub">
+Rejoignez une organisation GTA RP
 </p>
 
 
-</div>
 
 
 
+<form>
 
 
 
+<div class="field">
 
-
-
-<div
-id="messageBox"
-class="message-box hidden">
-
-</div>
-
-
-
-
-
-
-
-
-
-<form
-
-id="registerForm"
-
-class="auth-form"
-
->
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label for="username">
-
-Pseudo
-
+<label>
+Nom d'utilisateur
 </label>
 
-
-
-
-<input
-
+<input 
 type="text"
-
-id="username"
-
-name="username"
-
-placeholder="Choisissez votre pseudo"
-
-required
-
-minlength="3"
-
-maxlength="20"
-
-autocomplete="username"
-
->
-
-
-
-<small>
-
-3-20 caractères
-
-</small>
-
-
+placeholder="Votre pseudo">
 
 </div>
 
@@ -190,52 +94,15 @@ autocomplete="username"
 
 
 
+<div class="field">
 
-
-
-
-<div class="form-group">
-
-
-<label for="pin">
-
-PIN (4 chiffres)
-
+<label>
+Email
 </label>
 
-
-
-
-<input
-
-type="password"
-
-id="pin"
-
-name="pin"
-
-placeholder="••••"
-
-maxlength="4"
-
-pattern="[0-9]{4}"
-
-required
-
-autocomplete="new-password"
-
->
-
-
-
-
-<small>
-
-Créez un PIN de 4 chiffres
-
-</small>
-
-
+<input 
+type="email"
+placeholder="Votre email">
 
 </div>
 
@@ -243,43 +110,15 @@ Créez un PIN de 4 chiffres
 
 
 
+<div class="field">
 
-
-
-
-<div class="form-group">
-
-
-<label for="confirmPin">
-
-Confirmer le PIN
-
+<label>
+Mot de passe
 </label>
 
-
-
-
-<input
-
+<input 
 type="password"
-
-id="confirmPin"
-
-name="confirmPin"
-
-placeholder="••••"
-
-maxlength="4"
-
-pattern="[0-9]{4}"
-
-required
-
-autocomplete="new-password"
-
->
-
-
+placeholder="Créer un mot de passe">
 
 </div>
 
@@ -287,27 +126,27 @@ autocomplete="new-password"
 
 
 
+<div class="field">
+
+<label>
+Nom de l'organisation
+</label>
+
+<input 
+type="text"
+placeholder="Nom de votre organisation">
+
+</div>
 
 
 
 
-<button
 
-type="submit"
-
-class="btn btn-primary btn-full">
-
+<button class="btn btn-primary btn-block">
 
 Créer mon compte
 
-
 </button>
-
-
-
-
-
-
 
 
 
@@ -317,45 +156,12 @@ Créer mon compte
 
 
 
-
-
-
-
 <div class="auth-footer">
 
-
-<p>
-
-
-Vous avez déjà un compte ?
+Déjà un compte ?
 
 <a href="login.html">
-
 Se connecter
-
-</a>
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="auth-back">
-
-
-<a href="index.html">
-
-← Retour à l'accueil
-
 </a>
 
 
@@ -363,35 +169,14 @@ Se connecter
 
 
 
-
-
-
-
-
 </div>
 
 
-</div>
-
-
-
-
-
-
-
-
-
-<script src="js/utils.js"></script>
-
-<script src="js/api.js"></script>
-
-<script src="js/auth.js"></script>
-
+</main>
 
 
 
 
 </body>
-
 
 </html>
