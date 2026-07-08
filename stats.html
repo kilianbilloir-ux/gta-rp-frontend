@@ -1,157 +1,750 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiques - GTA RP</title>
+
+
+    <title>Statistiques - GTA RP ORG</title>
+
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
+
+
 </head>
+
+
+
 <body class="dark-theme">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <span class="logo-icon">🏢</span>
-                    <span>GTA RP ORG</span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="dashboard.html" class="nav-link">Tableau de bord</a></li>
-                <li><a href="stats.html" class="nav-link active">Statistiques</a></li>
-                <li><a href="notifications.html" class="nav-link">Notifications</a></li>
-                <li class="nav-user">
-                    <span id="userDisplay">Chargement...</span>
-                    <button id="logoutBtn" class="btn btn-small">Déconnexion</button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container main-content">
-        <!-- Header -->
-        <div class="dashboard-header">
-            <h1>Statistiques</h1>
-            <p>Analyse des performances de l'organisation</p>
-        </div>
 
-        <!-- Messages -->
-        <div id="messageBox" class="message-box hidden"></div>
 
-        <!-- Période de sélection -->
-        <div class="stats-period">
-            <button class="period-btn active" data-period="week">Cette semaine</button>
-            <button class="period-btn" data-period="month">Ce mois</button>
-            <button class="period-btn" data-period="year">Cette année</button>
-            <button class="period-btn" data-period="all">Tout le temps</button>
-        </div>
 
-        <!-- Stats principales -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-icon">💰</span>
-                    <span class="stat-label">Bénéfices Totaux</span>
-                </div>
-                <div class="stat-value" id="totalBenefits">$0</div>
-                <div class="stat-change positive" id="benefitsChange">↑ En hausse</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-icon">📊</span>
-                    <span class="stat-label">Nombre de transactions</span>
-                </div>
-                <div class="stat-value" id="transactionsCount">0</div>
-                <div class="stat-change">Activités enregistrées</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-icon">👥</span>
-                    <span class="stat-label">Membres actifs</span>
-                </div>
-                <div class="stat-value" id="activeMembers">0</div>
-                <div class="stat-change">Participants</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-icon">📈</span>
-                    <span class="stat-label">Moyenne par activité</span>
-                </div>
-                <div class="stat-value" id="avgPerActivity">$0</div>
-                <div class="stat-change">Par transaction</div>
-            </div>
-        </div>
 
-        <!-- Sections détaillées -->
-        <div class="stats-sections">
-            <!-- Section: Top activités -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>🏆 Top Activités</h2>
-                </div>
-                <div id="topActivities" class="activities-chart">
-                    <p class="loading">Chargement...</p>
-                </div>
-            </section>
+<nav class="navbar">
 
-            <!-- Section: Top membres -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>⭐ Top Contributeurs</h2>
-                </div>
-                <div id="topMembers" class="members-ranking">
-                    <p class="loading">Chargement...</p>
-                </div>
-            </section>
 
-            <!-- Section: Graphique des gains -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>📉 Évolution des Gains</h2>
-                </div>
-                <div id="gainsChart" class="chart-container">
-                    <p class="loading">Chargement...</p>
-                </div>
-            </section>
+<div class="nav-container">
 
-            <!-- Section: Distribution par type -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>🎯 Distribution par Type d'Activité</h2>
-                </div>
-                <div id="typeDistribution" class="distribution-chart">
-                    <p class="loading">Chargement...</p>
-                </div>
-            </section>
 
-            <!-- Section: Tableau détaillé -->
-            <section class="section">
-                <div class="section-header">
-                    <h2>📋 Détail des Transactions</h2>
-                    <button id="exportBtn" class="btn btn-small">Exporter</button>
-                </div>
-                <div id="transactionsTable" class="transactions-table">
-                    <p class="loading">Chargement...</p>
-                </div>
-            </section>
-        </div>
+
+    <div class="nav-logo">
+
+        <a href="index.html">
+
+            <span class="logo-icon">
+                🏢
+            </span>
+
+            <span>
+                GTA RP ORG
+            </span>
+
+        </a>
+
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 GTA RP Organization. Tous droits réservés.</p>
-        </div>
-    </footer>
 
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/stats.js"></script>
+
+
+
+<ul class="nav-menu">
+
+
+
+    <li>
+
+        <a href="dashboard.html" class="nav-link">
+
+            Tableau de bord
+
+        </a>
+
+    </li>
+
+
+
+
+    <li>
+
+        <a href="stats.html" class="nav-link active">
+
+            Statistiques
+
+        </a>
+
+    </li>
+
+
+
+
+
+    <li>
+
+        <a href="notifications.html" class="nav-link">
+
+            Notifications
+
+        </a>
+
+    </li>
+
+
+
+
+
+    <li>
+
+        <a href="admin.html" class="nav-link">
+
+            Admin
+
+        </a>
+
+    </li>
+
+
+
+
+
+
+    <li class="nav-user">
+
+
+        <span id="userDisplay">
+
+            Chargement...
+
+        </span>
+
+
+
+        <button
+        id="logoutBtn"
+        class="btn btn-small">
+
+            Déconnexion
+
+        </button>
+
+
+    </li>
+
+
+
+
+</ul>
+
+
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="container main-content">
+
+
+
+
+
+
+<div class="dashboard-header">
+
+
+<h1>
+Statistiques
+</h1>
+
+
+<p>
+Analyse des performances de l'organisation
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div 
+id="messageBox"
+class="message-box hidden">
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Choix période -->
+
+
+
+<div class="stats-period">
+
+
+<button
+class="period-btn"
+data-period="week">
+
+Cette semaine
+
+</button>
+
+
+
+<button
+class="period-btn"
+data-period="month">
+
+Ce mois
+
+</button>
+
+
+
+<button
+class="period-btn"
+data-period="year">
+
+Cette année
+
+</button>
+
+
+
+<button
+class="period-btn active"
+data-period="all">
+
+Tout le temps
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Statistiques principales -->
+
+
+
+<div class="stats-grid">
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+💰
+</span>
+
+
+<span class="stat-label">
+Bénéfices Totaux
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="totalBenefits">
+
+0 $
+
+</div>
+
+
+
+<div
+class="stat-change positive"
+id="benefitsChange">
+
+↑ En hausse
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+📊
+</span>
+
+
+<span class="stat-label">
+Transactions
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="transactionsCount">
+
+0
+
+</div>
+
+
+
+<div class="stat-change">
+
+Activités enregistrées
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+👥
+</span>
+
+
+<span class="stat-label">
+
+Membres actifs
+
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="activeMembers">
+
+0
+
+</div>
+
+
+
+<div class="stat-change">
+
+Participants
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="stat-card">
+
+
+<div class="stat-header">
+
+
+<span class="stat-icon">
+📈
+</span>
+
+
+<span class="stat-label">
+
+Moyenne activité
+
+</span>
+
+
+</div>
+
+
+
+<div
+class="stat-value"
+id="avgPerActivity">
+
+0 $
+
+</div>
+
+
+
+<div class="stat-change">
+
+Par transaction
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="stats-sections">
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+<div class="section-header">
+
+
+<h2>
+🏆 Top Activités
+</h2>
+
+
+</div>
+
+
+
+<div
+id="topActivities"
+class="activities-chart">
+
+
+<p class="loading">
+
+Chargement...
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+<div class="section-header">
+
+
+<h2>
+⭐ Top Contributeurs
+</h2>
+
+
+</div>
+
+
+
+<div
+id="topMembers"
+class="members-ranking">
+
+
+<p class="loading">
+
+Chargement...
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+<div class="section-header">
+
+
+<h2>
+📉 Évolution des gains
+</h2>
+
+
+</div>
+
+
+
+<div
+id="gainsChart"
+class="chart-container">
+
+
+<p class="loading">
+
+Chargement...
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+<div class="section-header">
+
+
+<h2>
+🎯 Distribution par type
+</h2>
+
+
+</div>
+
+
+
+<div
+id="typeDistribution"
+class="distribution-chart">
+
+
+<p class="loading">
+
+Chargement...
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+<div class="section-header">
+
+
+<h2>
+📋 Détail des transactions
+</h2>
+
+
+
+<button
+id="exportBtn"
+class="btn btn-small">
+
+Exporter
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div
+id="transactionsTable"
+class="transactions-table">
+
+
+<p class="loading">
+
+Chargement...
+
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+
+<div class="container">
+
+
+<p>
+
+© 2026 GTA RP Organization
+
+</p>
+
+
+</div>
+
+
+</footer>
+
+
+
+
+
+
+
+
+<script src="js/utils.js"></script>
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/stats.js"></script>
+
+
+
 </body>
+
+
 </html>
