@@ -1,89 +1,359 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - GTA RP</title>
+
+
+    <title>Connexion - GTA RP ORG</title>
+
+
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="css/login.css">
+
+
 </head>
+
+
+
+
+
 <body class="dark-theme">
-    <!-- Navigation minimaliste -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <span class="logo-icon">🏢</span>
-                    <span>GTA RP ORG</span>
-                </a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="auth-container">
-        <div class="auth-box">
-            <div class="auth-header">
-                <h1>Connexion</h1>
-                <p>Accédez à votre compte</p>
-            </div>
 
-            <!-- Messages d'erreur/succès -->
-            <div id="messageBox" class="message-box hidden"></div>
 
-            <!-- Formulaire de connexion -->
-            <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Pseudo</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        placeholder="Entrez votre pseudo"
-                        required
-                        autocomplete="username"
-                    >
-                </div>
 
-                <div class="form-group">
-                    <label for="pin">PIN (4 chiffres)</label>
-                    <input 
-                        type="password" 
-                        id="pin" 
-                        name="pin" 
-                        placeholder="••••"
-                        maxlength="4"
-                        pattern="[0-9]{4}"
-                        required
-                        autocomplete="current-password"
-                    >
-                    <small>Entrez vos 4 chiffres PIN</small>
-                </div>
 
-                <div class="form-group checkbox">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Se souvenir de moi</label>
-                </div>
+<nav class="navbar">
 
-                <button type="submit" class="btn btn-primary btn-full">
-                    <span id="btnText">Se connecter</span>
-                    <span id="btnLoader" class="loader hidden"></span>
-                </button>
-            </form>
 
-            <!-- Lien vers inscription -->
-            <div class="auth-footer">
-                <p>Vous n'avez pas de compte ? <a href="register.html">S'inscrire</a></p>
-            </div>
+<div class="nav-container">
 
-            <!-- Lien retour -->
-            <div class="auth-back">
-                <a href="index.html">← Retour à l'accueil</a>
-            </div>
-        </div>
+
+    <div class="nav-logo">
+
+
+        <a href="index.html">
+
+
+            <span class="logo-icon">
+                🏢
+            </span>
+
+
+            <span>
+                GTA RP ORG
+            </span>
+
+
+        </a>
+
+
     </div>
 
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="auth-container">
+
+
+
+<div class="auth-box">
+
+
+
+
+
+
+<div class="auth-header">
+
+
+<h1>
+
+Connexion
+
+</h1>
+
+
+<p>
+
+Accédez à votre compte
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div
+id="messageBox"
+class="message-box hidden">
+
+</div>
+
+
+
+
+
+
+
+
+
+<form
+id="loginForm"
+class="auth-form">
+
+
+
+
+
+<div class="form-group">
+
+
+<label for="username">
+
+Pseudo
+
+</label>
+
+
+
+<input
+
+type="text"
+
+id="username"
+
+name="username"
+
+placeholder="Entrez votre pseudo"
+
+required
+
+autocomplete="username"
+
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="form-group">
+
+
+<label for="pin">
+
+PIN (4 chiffres)
+
+</label>
+
+
+
+
+<input
+
+type="password"
+
+id="pin"
+
+name="pin"
+
+placeholder="••••"
+
+maxlength="4"
+
+pattern="[0-9]{4}"
+
+required
+
+autocomplete="current-password"
+
+>
+
+
+
+<small>
+
+Entrez vos 4 chiffres PIN
+
+</small>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="form-group checkbox">
+
+
+<input
+
+type="checkbox"
+
+id="remember"
+
+name="remember"
+
+>
+
+
+
+<label for="remember">
+
+Se souvenir de moi
+
+</label>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<button
+
+type="submit"
+
+class="btn btn-primary btn-full">
+
+
+Se connecter
+
+
+</button>
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+<div class="auth-footer">
+
+
+<p>
+
+
+Vous n'avez pas de compte ?
+
+<a href="register.html">
+
+S'inscrire
+
+</a>
+
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="auth-back">
+
+
+<a href="index.html">
+
+← Retour à l'accueil
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="js/utils.js"></script>
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+
+
+
 </body>
+
+
 </html>
