@@ -670,3 +670,159 @@ img{
     }
 
 }
+/* ==========================================================
+   PREMIUM DASHBOARD
+========================================================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+    margin-top:40px;
+
+}
+
+.stat-card{
+
+    background:linear-gradient(145deg,#181c23,#111317);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:#30d158;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(48,209,88,.20);
+
+}
+
+.stat-icon{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.stat-label{
+
+    color:#9fa4ad;
+
+    font-size:16px;
+
+}
+
+.stat-value{
+
+    font-size:38px;
+
+    margin-top:15px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+/* ==========================================================
+   TABLEAUX PREMIUM
+========================================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+}
+
+th{
+
+    background:#1d222b;
+
+    color:#30d158;
+
+    padding:18px;
+
+}
+
+td{
+
+    background:#15181d;
+
+    padding:18px;
+
+}
+
+tr:hover td{
+
+    background:#20252d;
+
+}
+/* ==========================================================
+   BARRE DE NAVIGATION PREMIUM
+========================================================== */
+
+.navbar{
+
+    backdrop-filter:blur(18px);
+
+    background:rgba(10,12,15,.92);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+}
+/* ==========================================================
+   CARTES PREMIUM
+========================================================== */
+
+.section{
+
+    background:#15181d;
+
+    border-radius:22px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
