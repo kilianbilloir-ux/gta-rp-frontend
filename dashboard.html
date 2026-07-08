@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - GTA RP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span class="logo-icon">🏢</span>
+                    <span>GTA RP ORG</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html" class="nav-link active">Tableau de bord</a></li>
+                <li><a href="stats.html" class="nav-link">Statistiques</a></li>
+                <li><a href="notifications.html" class="nav-link">Notifications</a></li>
+                <li class="nav-user">
+                    <span id="userDisplay">Chargement...</span>
+                    <button id="logoutBtn" class="btn btn-small">Déconnexion</button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <!-- Header du dashboard -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <h1>Tableau de Bord</h1>
+                <p id="userGreeting">Bienvenue</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info-card">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="profileUsername">-</p>
+                        <p class="user-grade" id="profileGrade">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages d'erreur/succès -->
+        <div id="messageBox" class="message-box hidden"></div>
+
+        <!-- Stats principales -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">💰</span>
+                    <span class="stat-label">Gains personnels</span>
+                </div>
+                <div class="stat-value" id="personalGains">$0</div>
+                <div class="stat-change positive">↑ Mis à jour</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">📊</span>
+                    <span class="stat-label">Activités</span>
+                </div>
+                <div class="stat-value" id="activitiesCount">0</div>
+                <div class="stat-change">Dernière mise à jour</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-label">Grade</span>
+                </div>
+                <div class="stat-value" id="gradeDisplay">-</div>
+                <div class="stat-change">Position</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">👥</span>
+                    <span class="stat-label">Membres</span>
+                </div>
+                <div class="stat-value" id="membersCount">0</div>
+                <div class="stat-change">Total org</div>
+            </div>
+        </div>
+
+        <!-- Section Ajouter une activité -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Ajouter une activité financière</h2>
+            </div>
+            <form id="addEntryForm" class="form-container">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entryType">Type d'activité</label>
+                        <select id="entryType" name="type" required>
+                            <option value="">-- Sélectionner --</option>
+                            <option value="vol">Vol</option>
+                            <option value="braquage">Braquage</option>
+                            <option value="drogue">Drogue</option>
+                            <option value="taxi">Taxi</option>
+                            <option value="livraison">Livraison</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryAmount">Montant ($)</label>
+                        <input 
+                            type="number" 
+                            id="entryAmount" 
+                            name="amount" 
+                            placeholder="0"
+                            min="0"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="entryDescription">Description</label>
+                    <textarea 
+                        id="entryDescription" 
+                        name="description" 
+                        placeholder="Décrivez l'activité..."
+                        rows="3"
+                    ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span id="submitBtnText">Ajouter l'activité</span>
+                    <span id="submitBtnLoader" class="loader hidden"></span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Historique des activités -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Historique des activités</h2>
+                <button id="refreshBtn" class="btn btn-small">Actualiser</button>
+            </div>
+            <div id="entriesList" class="entries-list">
+                <p class="loading">Chargement des activités...</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GTA RP Organization. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
