@@ -317,7 +317,21 @@ Revenu
 
 </div>
 
+<script>
+fetch("menu.html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("menu").innerHTML = data;
 
+    const page = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".side-link").forEach(link => {
+        if (link.getAttribute("href") === page) {
+            link.classList.add("active");
+        }
+    });
+});
+</script>
 </body>
 
 </html>
