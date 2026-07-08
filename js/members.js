@@ -1,297 +1,293 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
+
     try {
 
-        // Vérifie l'utilisateur connecté
+
         const user = await getMe();
 
-        document.getElementById("userDisplay").textContent =
+
+        document.getElementById(
+            "userDisplay"
+        ).textContent =
             user.username;
 
-        // Charge les membres
+
+
         await loadMembers();
 
-    } catch (error) {
 
-        window.location.href = "login.html";
+
+    } catch(error) {
+
+
+        window.location.href =
+        "login.html";
+
+
+    }
+
+
+
+    const search =
+    document.getElementById(
+        "memberSearch"
+    );
+
+
+    if(search){
+
+
+        search.addEventListener(
+            "input",
+            filterMembers
+        );
+
+
+    }
+
+
+
+});
+
+
+
+
+// Stockage temporaire des membres
+
+let membersData = [];
+
+
+
+
+// ============================
+// Charger les membres
+// ============================
+
+async function loadMembers(){
+
+
+    const box =
+    document.getElementById(
+        "membersList"
+    );
+
+
+    if(!box) return;
+
+
+
+    try{
+
+
+        const data =
+        await apiGet(
+            "/api/members"
+        );
+
+
+
+        membersData =
+        data.members;
+
+
+
+        displayMembers(
+            membersData
+        );
+
+
+
+    }catch(error){
+
+
+        box.innerHTML =
+        "<p>Impossible de charger les membres.</p>";
+
+
+    }
+
+
+}
+// ============================
+// Afficher les membres
+// ============================
+
+function displayMembers(members){
+
+
+    const box =
+    document.getElementById(
+        "membersList"
+    );
+
+
+    if(!box) return;
+
+
+
+    box.innerHTML = "";
+
+
+
+    if(!members ||
+       members.length === 0){
+
+
+        box.innerHTML =
+        "<p>Aucun membre trouvé.</p>";
+
+
         return;
 
     }
 
-    // Bouton Actualiser
-    const refreshBtn =
-        document.getElementById("refreshMembersBtn");
 
-    if (refreshBtn) {
 
-        refreshBtn.addEventListener(
-            "click",
-            loadMembers
-        );
+    members.forEach(member=>{
 
-    }
 
-});
-// ============================
-// Chargement des membres
-// ============================
+        box.innerHTML += `
 
-async function loadMembers() {
 
-    const box =
-        document.getElementById("membersList");
+        <div class="member-card">
 
-    if (!box) return;
 
-    try {
+            <div class="member-avatar">
+                👤
+            </div>
 
-        const data =
-            await apiGet("/api/admin/members");
 
-        box.innerHTML = "";
 
-        let admins = 0;
-        let banned = 0;
+            <div class="member-info">
 
-        document.getElementById("totalMembers").textContent =
-            data.members.length;
 
-        data.members.forEach(member => {
+                <h3>
+                    ${member.username}
+                </h3>
 
-            if (member.isAdmin) admins++;
 
-            if (member.banned) banned++;
-
-            box.innerHTML += `
-
-            <div class="member-card">
-
-                <h3>${member.username}</h3>
 
                 <p>
                     Grade :
-                    <b>${member.grade}</b>
+                    <b>
+                    ${member.grade || "Membre"}
+                    </b>
                 </p>
+
+
 
                 <p>
-                    ${member.isAdmin ? "👑 Administrateur" : "👤 Membre"}
+
+                    ${
+                        member.isAdmin
+                        ?
+                        "👑 Administrateur"
+                        :
+                        "👤 Membre"
+                    }
+
                 </p>
+
+
 
                 <p>
-                    ${member.banned ? "🚫 Banni" : "✅ Actif"}
+
+                    Gains :
+                    <b>
+                    ${member.total || 0} $
+                    </b>
+
                 </p>
 
-                <button
-                    class="btn btn-small"
-                    onclick="changeGrade('${member.username}')">
 
-                    Changer le grade
-
-                </button>
-
-                <button
-                    class="btn btn-small"
-                    onclick="resetPin('${member.username}')">
-
-                    Reset PIN
-
-                </button>
 
             </div>
 
-            `;
 
-        });
+        </div>
 
-        document.getElementById("totalAdmins").textContent =
-            admins;
 
-        document.getElementById("totalBanned").textContent =
-            banned;
+        `;
 
-    } catch (error) {
 
-        box.innerHTML =
-            "<p>Impossible de charger les membres.</p>";
+    });
 
-        showMessage(
-            error.message,
-            "error"
-        );
 
-    }
 
 }
+
+
+
+
+
+
 // ============================
-// Changer le grade
+// Recherche membre
 // ============================
 
-async function changeGrade(username){
+function filterMembers(){
 
-    const grade = prompt(
-        "Nouveau grade :"
+
+    const search =
+    document.getElementById(
+        "memberSearch"
+    ).value.toLowerCase();
+
+
+
+    const filtered =
+    membersData.filter(member=>{
+
+
+        return member.username
+        .toLowerCase()
+        .includes(search);
+
+
+    });
+
+
+
+    displayMembers(
+        filtered
     );
 
-    if(!grade) return;
-
-    try{
-
-        await apiPost(
-            "/api/admin/setGrade",
-            {
-                username,
-                grade
-            }
-        );
-
-        showMessage(
-            "Grade modifié avec succès.",
-            "success"
-        );
-
-        loadMembers();
-
-    }catch(error){
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
-    }
 
 }
 
 
 
+
+
 // ============================
-// Réinitialiser le PIN
+// Déconnexion
 // ============================
 
-async function resetPin(username){
+const logoutBtn =
+document.getElementById(
+    "logoutBtn"
+);
 
-    const newPin = prompt(
-        "Nouveau PIN (4 chiffres) :"
+
+
+if(logoutBtn){
+
+
+    logoutBtn.addEventListener(
+        "click",
+        async()=>{
+
+
+            await logout();
+
+
+            window.location.href =
+            "login.html";
+
+
+        }
     );
 
-    if(!newPin) return;
-
-    if(!/^[0-9]{4}$/.test(newPin)){
-
-        showMessage(
-            "Le PIN doit contenir exactement 4 chiffres.",
-            "error"
-        );
-
-        return;
-
-    }
-
-    try{
-
-        await apiPost(
-            "/api/admin/resetPin",
-            {
-                username,
-                newPin
-            }
-        );
-
-        showMessage(
-            "PIN réinitialisé.",
-            "success"
-        );
-
-    }catch(error){
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-
-// ============================
-// Bannir un membre
-// ============================
-
-async function banMember(username){
-
-    const minutes = prompt(
-        "Durée du bannissement (minutes) :"
-    );
-
-    if(!minutes) return;
-
-    try{
-
-        await apiPost(
-            "/api/admin/ban",
-            {
-                username,
-                minutes:Number(minutes)
-            }
-        );
-
-        showMessage(
-            username + " a été banni.",
-            "success"
-        );
-
-        loadMembers();
-
-    }catch(error){
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
-    }
-
-}
-
-
-
-// ============================
-// Supprimer un membre
-// ============================
-
-async function deleteMember(username){
-
-    if(!confirm(
-        "Supprimer définitivement " +
-        username +
-        " ?"
-    )) return;
-
-    try{
-
-        await apiPost(
-            "/api/admin/deleteMember",
-            {
-                username
-            }
-        );
-
-        showMessage(
-            "Membre supprimé.",
-            "success"
-        );
-
-        loadMembers();
-
-    }catch(error){
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
-    }
 
 }
