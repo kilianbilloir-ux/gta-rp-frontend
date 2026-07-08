@@ -50,6 +50,19 @@
     </main>
   </div>
 </div>
+<script>
+fetch("menu.html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("menu").innerHTML = data;
 
+    // Met l'onglet Activités en vert
+    document.querySelectorAll(".side-link").forEach(link => {
+        if (link.getAttribute("href") === "activites.html") {
+            link.classList.add("active");
+        }
+    });
+});
+</script>
 </body>
 </html>
