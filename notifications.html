@@ -1,95 +1,370 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notifications - GTA RP</title>
+
+
+    <title>Notifications - GTA RP ORG</title>
+
+
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="css/dashboard.css">
+
+
 </head>
+
+
+
+
+
 <body class="dark-theme">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <span class="logo-icon">🏢</span>
-                    <span>GTA RP ORG</span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="dashboard.html" class="nav-link">Tableau de bord</a></li>
-                <li><a href="stats.html" class="nav-link">Statistiques</a></li>
-                <li><a href="notifications.html" class="nav-link active">Notifications</a></li>
-                <li class="nav-user">
-                    <span id="userDisplay">Chargement...</span>
-                    <button id="logoutBtn" class="btn btn-small">Déconnexion</button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container main-content">
-        <!-- Header -->
-        <div class="dashboard-header">
-            <div class="header-left">
-                <h1>Notifications</h1>
-                <p>Vos messages et alertes</p>
-            </div>
-            <div class="header-right">
-                <button id="markAllReadBtn" class="btn btn-small">Marquer tout comme lu</button>
-            </div>
-        </div>
 
-        <!-- Messages -->
-        <div id="messageBox" class="message-box hidden"></div>
 
-        <!-- Filtres -->
-        <div class="notification-filters">
-            <button class="filter-btn active" data-filter="all">Tous</button>
-            <button class="filter-btn" data-filter="unread">Non lus</button>
-            <button class="filter-btn" data-filter="alert">Alertes</button>
-            <button class="filter-btn" data-filter="message">Messages</button>
-        </div>
 
-        <!-- Liste des notifications -->
-        <section class="section">
-            <div id="notificationsList" class="notifications-list">
-                <p class="loading">Chargement des notifications...</p>
-            </div>
-        </section>
+
+<nav class="navbar">
+
+
+<div class="nav-container">
+
+
+
+    <div class="nav-logo">
+
+
+        <a href="index.html">
+
+
+            <span class="logo-icon">
+                🏢
+            </span>
+
+
+            <span>
+                GTA RP ORG
+            </span>
+
+
+        </a>
+
+
     </div>
 
-    <!-- Modal de notification détaillée -->
-    <div id="notificationModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="notificationTitle">Notification</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="notificationContent"></div>
-                <div class="modal-buttons">
-                    <button type="button" class="btn btn-primary close-modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 GTA RP Organization. Tous droits réservés.</p>
-        </div>
-    </footer>
 
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/notifications.js"></script>
+
+
+
+<ul class="nav-menu">
+
+
+
+    <li>
+
+        <a href="dashboard.html" class="nav-link">
+
+            Tableau de bord
+
+        </a>
+
+    </li>
+
+
+
+
+    <li>
+
+        <a href="stats.html" class="nav-link">
+
+            Statistiques
+
+        </a>
+
+    </li>
+
+
+
+
+
+    <li>
+
+        <a href="notifications.html" class="nav-link active">
+
+            Notifications
+
+        </a>
+
+    </li>
+
+
+
+
+
+    <li>
+
+        <a href="admin.html" class="nav-link">
+
+            Admin
+
+        </a>
+
+    </li>
+
+
+
+
+
+
+    <li class="nav-user">
+
+
+        <span id="userDisplay">
+
+            Chargement...
+
+        </span>
+
+
+
+
+        <button
+        id="logoutBtn"
+        class="btn btn-small">
+
+
+            Déconnexion
+
+
+        </button>
+
+
+
+    </li>
+
+
+
+
+</ul>
+
+
+
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="container main-content">
+
+
+
+
+
+
+
+<div class="dashboard-header">
+
+
+
+<div class="header-left">
+
+
+<h1>
+
+Notifications
+
+</h1>
+
+
+<p>
+
+Vos messages et alertes
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="header-right">
+
+
+<button
+id="markAllReadBtn"
+class="btn btn-small">
+
+
+Marquer tout comme lu
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div
+id="messageBox"
+class="message-box hidden">
+
+</div>
+
+
+
+
+
+
+
+
+
+<section class="section">
+
+
+
+<div class="section-header">
+
+
+
+<h2>
+
+Centre de notifications
+
+</h2>
+
+
+
+<button
+id="refreshNotificationsBtn"
+class="btn btn-small">
+
+
+Actualiser
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+id="notificationsList"
+class="notifications-list">
+
+
+
+<p class="loading">
+
+Chargement des notifications...
+
+</p>
+
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+
+<div class="container">
+
+
+<p>
+
+© 2026 GTA RP Organization
+
+</p>
+
+
+</div>
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+<script src="js/utils.js"></script>
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/notifications.js"></script>
+
+
+
+
+
 </body>
+
+
 </html>
