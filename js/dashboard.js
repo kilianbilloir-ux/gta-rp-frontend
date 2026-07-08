@@ -4,40 +4,56 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
 
 
-        // Vérification connexion
-
         const user = await getMe();
 
 
-        document.getElementById(
-            "userDisplay"
-        ).textContent =
+        const userDisplay =
+        document.getElementById("userDisplay");
+
+        if(userDisplay){
+
+            userDisplay.textContent =
             user.username;
 
+        }
 
 
-        document.getElementById(
-            "profileUsername"
-        ).textContent =
+
+        const profileUsername =
+        document.getElementById("profileUsername");
+
+        if(profileUsername){
+
+            profileUsername.textContent =
             user.username;
 
+        }
 
 
-        document.getElementById(
-            "profileGrade"
-        ).textContent =
+
+        const profileGrade =
+        document.getElementById("profileGrade");
+
+        if(profileGrade){
+
+            profileGrade.textContent =
             user.grade || "Membre";
 
+        }
 
 
-        document.getElementById(
-            "userGreeting"
-        ).textContent =
+
+        const greeting =
+        document.getElementById("userGreeting");
+
+        if(greeting){
+
+            greeting.textContent =
             "Bienvenue " + user.username;
 
+        }
 
 
-        // Chargement des données
 
         await loadDashboardStats();
 
@@ -56,8 +72,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    // Formulaire ajout activité
-
     const form =
     document.getElementById(
         "addEntryForm"
@@ -66,18 +80,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if(form){
 
-
         form.addEventListener(
             "submit",
             addActivity
         );
 
-
     }
 
 
-
-    // Bouton actualiser
 
     const refresh =
     document.getElementById(
@@ -87,23 +97,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if(refresh){
 
-
         refresh.addEventListener(
             "click",
             loadActivities
         );
 
-
     }
 
 
-
 });
+
+
+
+
 // ============================
 // Charger les statistiques
 // ============================
 
 async function loadDashboardStats(){
+
 
     try{
 
@@ -115,31 +127,63 @@ async function loadDashboardStats(){
 
 
 
+        const personalGains =
         document.getElementById(
             "personalGains"
-        ).textContent =
+        );
+
+
+        if(personalGains){
+
+            personalGains.textContent =
             data.personalGains + " $";
 
+        }
 
 
+
+        const actionsTotal =
         document.getElementById(
             "actionsTotal"
-        ).textContent =
+        );
+
+
+        if(actionsTotal){
+
+            actionsTotal.textContent =
             data.actions + " $";
 
+        }
 
 
+
+        const braquagesTotal =
         document.getElementById(
             "braquagesTotal"
-        ).textContent =
+        );
+
+
+        if(braquagesTotal){
+
+            braquagesTotal.textContent =
             data.braquages + " $";
 
+        }
 
 
+
+        const ventesTotal =
         document.getElementById(
             "ventesTotal"
-        ).textContent =
+        );
+
+
+        if(ventesTotal){
+
+            ventesTotal.textContent =
             data.ventes + " $";
+
+        }
 
 
 
@@ -154,6 +198,7 @@ async function loadDashboardStats(){
 
     }
 
+
 }
 
 
@@ -165,6 +210,7 @@ async function loadDashboardStats(){
 // ============================
 
 async function addActivity(e){
+
 
     e.preventDefault();
 
@@ -207,14 +253,62 @@ async function addActivity(e){
 
     if(!category || !amount){
 
+
         showMessage(
             "Remplis les champs obligatoires",
             "error"
         );
 
+
         return;
 
+
     }
+
+
+
+    const money =
+    Number(amount);
+
+
+
+    if(money <= 0){
+
+
+        showMessage(
+            "Le montant doit être supérieur à 0",
+            "error"
+        );
+
+
+        return;
+
+
+    }
+
+
+
+    // Limite braquage
+
+    if(
+        category.toLowerCase() === "braquage"
+        &&
+        money > 120000
+    ){
+
+
+        showMessage(
+            "Un braquage ne peut pas dépasser 120000 $",
+            "error"
+        );
+
+
+        return;
+
+
+    }
+
+
 
 
 
@@ -225,11 +319,26 @@ async function addActivity(e){
             "/api/activity/add",
             {
 
+
                 category,
-                amount:Number(amount),
+
+
+                amount: money,
+
+
                 subtype,
+
+
                 product,
-                quantity:Number(quantity)
+
+
+                quantity:
+                quantity
+                ?
+                Number(quantity)
+                :
+                1
+
 
             }
         );
@@ -243,9 +352,11 @@ async function addActivity(e){
 
 
 
-        document.getElementById(
+        document
+        .getElementById(
             "addEntryForm"
-        ).reset();
+        )
+        .reset();
 
 
 
@@ -268,8 +379,13 @@ async function addActivity(e){
 
 
 }
+
+
+
+
+
 // ============================
-// Charger l'historique des activités
+// Charger l'historique
 // ============================
 
 async function loadActivities(){
@@ -299,8 +415,10 @@ async function loadActivities(){
 
 
 
-        if(!data.activities ||
-           data.activities.length === 0){
+        if(
+            !data.activities ||
+            data.activities.length === 0
+        ){
 
 
             box.innerHTML =
@@ -308,6 +426,7 @@ async function loadActivities(){
 
 
             return;
+
 
         }
 
@@ -327,12 +446,10 @@ async function loadActivities(){
                 </h3>
 
 
-
                 <p>
                     Type :
                     ${activity.subtype || "Non précisé"}
                 </p>
-
 
 
                 <p>
@@ -367,9 +484,9 @@ async function loadActivities(){
 
 
                 <small>
-
-                    ${formatDateTime(activity.date)}
-
+                    ${
+                    formatDateTime(activity.date)
+                    }
                 </small>
 
 
@@ -398,6 +515,7 @@ async function loadActivities(){
 
 
 
+
 // ============================
 // Déconnexion
 // ============================
@@ -421,7 +539,6 @@ if(logoutButton){
 
 
                 await logout();
-
 
 
                 window.location.href =
