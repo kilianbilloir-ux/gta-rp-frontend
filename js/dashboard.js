@@ -1,157 +1,156 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
 
-    await loadProfile();
-
-    await loadStats();
-
-    await loadEntries();
-
-    await loadNotifications();
+    try {
 
 
-
-    const form = document.getElementById("addEntryForm");
-
-
-    if(form){
-
-        form.addEventListener(
-            "submit",
-            addEntry
-        );
-
-    }
-
-
-
-    const refresh =
-    document.getElementById("refreshBtn");
-
-
-    if(refresh){
-
-        refresh.addEventListener(
-            "click",
-            async()=>{
-
-                await loadStats();
-                await loadEntries();
-                await loadNotifications();
-
-            }
-        );
-
-    }
-
-
-});
-
-
-
-
-
-// Charger profil utilisateur
-
-async function loadProfile(){
-
-    try{
+        // Vérification connexion
 
         const user = await getMe();
 
 
         document.getElementById(
+            "userDisplay"
+        ).textContent =
+            user.username;
+
+
+
+        document.getElementById(
             "profileUsername"
-        ).textContent = user.username;
+        ).textContent =
+            user.username;
+
 
 
         document.getElementById(
             "profileGrade"
-        ).textContent = user.grade;
+        ).textContent =
+            user.grade || "Membre";
 
-
-
-        document.getElementById(
-            "userDisplay"
-        ).textContent = user.username;
 
 
         document.getElementById(
             "userGreeting"
         ).textContent =
-        "Bienvenue " + user.username;
+            "Bienvenue " + user.username;
 
 
-    }catch(error){
 
-        window.location.href="login.html";
+        // Chargement des données
+
+        await loadDashboardStats();
+
+        await loadActivities();
+
+
+
+    } catch(error) {
+
+
+        window.location.href =
+        "login.html";
+
 
     }
 
-}
+
+
+    // Formulaire ajout activité
+
+    const form =
+    document.getElementById(
+        "addEntryForm"
+    );
+
+
+    if(form){
+
+
+        form.addEventListener(
+            "submit",
+            addActivity
+        );
+
+
+    }
 
 
 
+    // Bouton actualiser
+
+    const refresh =
+    document.getElementById(
+        "refreshBtn"
+    );
+
+
+    if(refresh){
+
+
+        refresh.addEventListener(
+            "click",
+            loadActivities
+        );
+
+
+    }
 
 
 
-// Charger statistiques
+});
+// ============================
+// Charger les statistiques
+// ============================
 
-async function loadStats(){
+async function loadDashboardStats(){
 
     try{
 
 
         const data =
         await apiGet(
-            "/api/entry/totals"
+            "/api/dashboard/stats"
         );
-
-
-
-        const totals =
-        data.totals;
-
-
-
-        document.getElementById(
-            "actionsTotal"
-        ).textContent =
-        totals.actions + " $";
-
-
-
-        document.getElementById(
-            "braquagesTotal"
-        ).textContent =
-        totals.braquages + " $";
-
-
-
-        document.getElementById(
-            "ventesTotal"
-        ).textContent =
-        totals.ventes + " $";
 
 
 
         document.getElementById(
             "personalGains"
         ).textContent =
-        (
-            totals.actions +
-            totals.braquages +
-            totals.ventes
-        ) + " $";
+            data.personalGains + " $";
+
+
+
+        document.getElementById(
+            "actionsTotal"
+        ).textContent =
+            data.actions + " $";
+
+
+
+        document.getElementById(
+            "braquagesTotal"
+        ).textContent =
+            data.braquages + " $";
+
+
+
+        document.getElementById(
+            "ventesTotal"
+        ).textContent =
+            data.ventes + " $";
 
 
 
     }catch(error){
 
+
         showMessage(
             error.message,
             "error"
         );
+
 
     }
 
@@ -161,50 +160,61 @@ async function loadStats(){
 
 
 
-
+// ============================
 // Ajouter une activité
+// ============================
 
-async function addEntry(e){
+async function addActivity(e){
 
     e.preventDefault();
 
 
-    const data={
 
-        category:
-        document.getElementById(
-            "entryCategory"
-        ).value,
-
-
-        amount:
-        Number(
-            document.getElementById(
-                "entryAmount"
-            ).value
-        ),
+    const category =
+    document.getElementById(
+        "entryCategory"
+    ).value;
 
 
-        subtype:
-        document.getElementById(
-            "entrySubtype"
-        ).value,
+
+    const amount =
+    document.getElementById(
+        "entryAmount"
+    ).value;
 
 
-        product:
-        document.getElementById(
-            "entryProduct"
-        ).value,
+
+    const subtype =
+    document.getElementById(
+        "entrySubtype"
+    ).value;
 
 
-        quantity:
-        Number(
-            document.getElementById(
-                "entryQuantity"
-            ).value
-        )
 
-    };
+    const product =
+    document.getElementById(
+        "entryProduct"
+    ).value;
+
+
+
+    const quantity =
+    document.getElementById(
+        "entryQuantity"
+    ).value;
+
+
+
+    if(!category || !amount){
+
+        showMessage(
+            "Remplis les champs obligatoires",
+            "error"
+        );
+
+        return;
+
+    }
 
 
 
@@ -212,23 +222,36 @@ async function addEntry(e){
 
 
         await apiPost(
-            "/api/entry/add",
-            data
+            "/api/activity/add",
+            {
+
+                category,
+                amount:Number(amount),
+                subtype,
+                product,
+                quantity:Number(quantity)
+
+            }
         );
 
 
+
         showMessage(
-            "Activité ajoutée",
+            "Activité ajoutée avec succès",
             "success"
         );
 
 
-        e.target.reset();
+
+        document.getElementById(
+            "addEntryForm"
+        ).reset();
 
 
-        await loadStats();
 
-        await loadEntries();
+        await loadDashboardStats();
+
+        await loadActivities();
 
 
 
@@ -245,15 +268,11 @@ async function addEntry(e){
 
 
 }
+// ============================
+// Charger l'historique des activités
+// ============================
 
-
-
-
-
-
-// Historique
-
-async function loadEntries(){
+async function loadActivities(){
 
 
     const box =
@@ -262,7 +281,7 @@ async function loadEntries(){
     );
 
 
-    if(!box)return;
+    if(!box) return;
 
 
 
@@ -271,33 +290,91 @@ async function loadEntries(){
 
         const data =
         await apiGet(
-            "/api/entry/list"
+            "/api/activity/list"
         );
 
 
 
-        box.innerHTML="";
+        box.innerHTML = "";
 
 
 
-        data.entries.forEach(entry=>{
+        if(!data.activities ||
+           data.activities.length === 0){
+
+
+            box.innerHTML =
+            "<p>Aucune activité enregistrée.</p>";
+
+
+            return;
+
+        }
+
+
+
+        data.activities.forEach(activity=>{
 
 
             box.innerHTML += `
 
-            <div class="entry-card">
 
-            <b>${entry.category}</b>
+            <div class="activity-entry">
 
-            <p>
-            ${entry.subtype || ""}
-            </p>
 
-            <p>
-            ${entry.amount} $
-            </p>
+                <h3>
+                    ${activity.category}
+                </h3>
+
+
+
+                <p>
+                    Type :
+                    ${activity.subtype || "Non précisé"}
+                </p>
+
+
+
+                <p>
+                    Montant :
+                    <b>
+                    ${activity.amount} $
+                    </b>
+                </p>
+
+
+
+                ${
+                    activity.product
+                    ?
+                    `
+                    <p>
+                    Produit :
+                    ${activity.product}
+                    </p>
+                    `
+                    :
+                    ""
+                }
+
+
+
+                <p>
+                    Quantité :
+                    ${activity.quantity || 1}
+                </p>
+
+
+
+                <small>
+
+                    ${formatDateTime(activity.date)}
+
+                </small>
+
 
             </div>
+
 
             `;
 
@@ -308,8 +385,10 @@ async function loadEntries(){
 
     }catch(error){
 
+
         box.innerHTML =
-        "Erreur chargement";
+        "<p>Impossible de charger l'historique.</p>";
+
 
     }
 
@@ -319,62 +398,50 @@ async function loadEntries(){
 
 
 
+// ============================
+// Déconnexion
+// ============================
 
-
-
-// Notifications
-
-async function loadNotifications(){
-
-
-const box =
+const logoutButton =
 document.getElementById(
-"notificationsList"
-);
-
-
-if(!box)return;
-
-
-
-try{
-
-
-const data =
-await apiGet(
-"/api/notifications"
+    "logoutBtn"
 );
 
 
 
-box.innerHTML="";
+if(logoutButton){
+
+
+    logoutButton.addEventListener(
+        "click",
+        async()=>{
+
+
+            try{
+
+
+                await logout();
 
 
 
-data.notifications.forEach(n=>{
+                window.location.href =
+                "login.html";
 
 
-box.innerHTML += `
-
-<div class="notification">
-
-${n.message}
-
-</div>
-
-`;
+            }catch(error){
 
 
-});
+                showMessage(
+                    error.message,
+                    "error"
+                );
 
 
+            }
 
-}catch(error){
 
-box.innerHTML =
-"Erreur notifications";
-
-}
+        }
+    );
 
 
 }
