@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
+
         const profileUsername =
         document.getElementById("profileUsername");
 
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             profileUsername.textContent =
             user.username;
         }
+
 
 
         const profileGrade =
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
+
         const greeting =
         document.getElementById("userGreeting");
 
@@ -41,21 +44,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
+
         await loadDashboardStats();
+
         await loadActivities();
+
 
 
     } catch(error) {
 
+
         window.location.href =
         "login.html";
+
 
     }
 
 
 
+
     const form =
-    document.getElementById("addEntryForm");
+    document.getElementById(
+        "addEntryForm"
+    );
 
 
     if(form){
@@ -70,7 +81,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     const refresh =
-    document.getElementById("refreshBtn");
+    document.getElementById(
+        "refreshBtn"
+    );
 
 
     if(refresh){
@@ -83,20 +96,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-
 });
 
 
 
 
 
+
 // ============================
-// Charger les statistiques
+// Charger statistiques
 // ============================
 
 async function loadDashboardStats(){
 
+
     try{
+
 
         const data =
         await apiGet(
@@ -105,63 +120,64 @@ async function loadDashboardStats(){
 
 
 
-        const personalGains =
-        document.getElementById("personalGains");
-
-        if(personalGains){
-
-            personalGains.textContent =
-            data.personalGains + " $";
-
-        }
+        updateValue(
+            "personalGains",
+            data.personalGains + " $"
+        );
 
 
-
-        const actionsTotal =
-        document.getElementById("actionsTotal");
-
-        if(actionsTotal){
-
-            actionsTotal.textContent =
-            data.actions + " $";
-
-        }
+        updateValue(
+            "actionsTotal",
+            data.actions + " $"
+        );
 
 
-
-        const braquagesTotal =
-        document.getElementById("braquagesTotal");
-
-        if(braquagesTotal){
-
-            braquagesTotal.textContent =
-            data.braquages + " $";
-
-        }
+        updateValue(
+            "braquagesTotal",
+            data.braquages + " $"
+        );
 
 
+        updateValue(
+            "ventesTotal",
+            data.ventes + " $"
+        );
 
-        const ventesTotal =
-        document.getElementById("ventesTotal");
-
-        if(ventesTotal){
-
-            ventesTotal.textContent =
-            data.ventes + " $";
-
-        }
 
 
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
+    }
+
+
+}
+
+
+
+
+function updateValue(id,value){
+
+
+    const element =
+    document.getElementById(id);
+
+
+    if(element){
+
+        element.textContent =
+        value;
+
     }
 
 }
+
 
 
 
@@ -172,6 +188,7 @@ async function loadDashboardStats(){
 // ============================
 
 async function addActivity(e){
+
 
     e.preventDefault();
 
@@ -191,55 +208,20 @@ async function addActivity(e){
 
 
 
-    const subtype =
-    document.getElementById(
-        "entrySubtype"
-    )
-    ?
-    document.getElementById(
-        "entrySubtype"
-    ).value
-    :
-    "";
-
-
-
-    const product =
-    document.getElementById(
-        "entryProduct"
-    )
-    ?
-    document.getElementById(
-        "entryProduct"
-    ).value
-    :
-    "";
-
-
-
-    const quantity =
-    document.getElementById(
-        "entryQuantity"
-    )
-    ?
-    document.getElementById(
-        "entryQuantity"
-    ).value
-    :
-    1;
-
-
 
     if(!category || !amount){
+
 
         showMessage(
             "Choisis une activité et un montant",
             "error"
         );
 
+
         return;
 
     }
+
 
 
 
@@ -248,12 +230,15 @@ async function addActivity(e){
 
 
 
+
     if(money <= 0){
+
 
         showMessage(
             "Le montant doit être supérieur à 0",
             "error"
         );
+
 
         return;
 
@@ -261,18 +246,21 @@ async function addActivity(e){
 
 
 
-    // Limite braquage
+
+    // Limite braquage 120 000$
 
     if(
-        category === "braquage"
+        category.toLowerCase() === "braquage"
         &&
         money > 120000
     ){
 
+
         showMessage(
-            "Un braquage ne peut pas dépasser 120000 $",
+            "Un braquage est limité à 120000 $",
             "error"
         );
+
 
         return;
 
@@ -291,14 +279,7 @@ async function addActivity(e){
 
                 category,
 
-                amount: money,
-
-                subtype,
-
-                product,
-
-                quantity:
-                Number(quantity) || 1
+                amount: money
 
             }
         );
@@ -334,10 +315,12 @@ async function addActivity(e){
 
     }catch(error){
 
+
         showMessage(
             error.message,
             "error"
         );
+
 
     }
 
@@ -348,16 +331,20 @@ async function addActivity(e){
 
 
 
+
+
 // ============================
-// Charger l'historique
+// Historique activités
 // ============================
 
 async function loadActivities(){
+
 
     const box =
     document.getElementById(
         "entriesList"
     );
+
 
 
     if(!box) return;
@@ -374,21 +361,25 @@ async function loadActivities(){
 
 
 
-        box.innerHTML = "";
+        box.innerHTML="";
 
 
 
         if(
             !data.activities ||
-            data.activities.length === 0
+            data.activities.length===0
         ){
+
 
             box.innerHTML =
             "<p>Aucune activité enregistrée.</p>";
 
+
             return;
 
         }
+
+
 
 
 
@@ -397,53 +388,33 @@ async function loadActivities(){
 
             box.innerHTML += `
 
+
             <div class="activity-entry">
 
+
                 <h3>
-                    ${activity.category}
+                ${activity.category}
                 </h3>
 
 
-                <p>
-                    Type :
-                    ${activity.subtype || "Non précisé"}
-                </p>
-
 
                 <p>
-                    Montant :
-                    <b>
-                    ${activity.amount} $
-                    </b>
+                Montant :
+                <b>
+                ${activity.amount} $
+                </b>
                 </p>
 
-
-                ${
-                    activity.product
-                    ?
-                    `
-                    <p>
-                    Produit :
-                    ${activity.product}
-                    </p>
-                    `
-                    :
-                    ""
-                }
-
-
-                <p>
-                    Quantité :
-                    ${activity.quantity || 1}
-                </p>
 
 
                 <small>
-                    ${formatDateTime(activity.date)}
+                ${formatDateTime(activity.date)}
                 </small>
 
 
+
             </div>
+
 
             `;
 
@@ -454,12 +425,17 @@ async function loadActivities(){
 
     }catch(error){
 
+
         box.innerHTML =
         "<p>Impossible de charger l'historique.</p>";
 
+
     }
 
+
 }
+
+
 
 
 
@@ -478,34 +454,21 @@ document.getElementById(
 
 if(logoutButton){
 
+
     logoutButton.addEventListener(
         "click",
         async()=>{
 
 
-            try{
+            await logout();
 
 
-                await logout();
-
-
-                window.location.href =
-                "login.html";
-
-
-            }catch(error){
-
-
-                showMessage(
-                    error.message,
-                    "error"
-                );
-
-
-            }
+            window.location.href =
+            "login.html";
 
 
         }
     );
+
 
 }
