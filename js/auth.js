@@ -122,7 +122,7 @@ if(logoutBtn){
 
     });
 
-}});
+});
 
 
 // Affichage des messages
