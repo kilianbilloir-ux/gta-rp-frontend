@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         markBtn.addEventListener(
             "click",
             markAllRead
+            );
         );
 
     });
