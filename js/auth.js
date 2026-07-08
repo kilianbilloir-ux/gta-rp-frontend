@@ -97,7 +97,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
+// Déconnexion
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if(logoutBtn){
+
+    logoutBtn.addEventListener("click", async ()=>{
+
+        try{
+
+            await logout();
+
+            window.location.href = "login.html";
+
+        }catch(error){
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    });
+
+}});
 
 
 // Affichage des messages
