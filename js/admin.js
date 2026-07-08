@@ -156,25 +156,8 @@ ${
         Supprimer
 
     </button>`
-}
-
-                <button
-                    class="btn btn-small"
-                    onclick="banMember('${member.username}')">
-
-                    Bannir
-
-                </button>
-
-                ${
-                    member.isAdmin
-                    ? ""
-                    :
-                    `<button
-                        class="btn btn-danger"
-                        onclick="deleteMember('${member.username}')">
-
-                        Supprimer
+            
+                    
 
                     </button>`
                 }
