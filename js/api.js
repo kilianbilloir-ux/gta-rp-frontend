@@ -24,11 +24,10 @@ async function apiRequest(endpoint, method = "GET", data = null) {
         options
     );
 
-
-    const result = await response.json()
-        .catch(() => ({
-            error: "Erreur serveur"
-        }));
+const result = await response.json()
+    .catch(() => ({
+        error: "Réponse invalide du serveur"
+    }));
 
 
     if (!response.ok) {
