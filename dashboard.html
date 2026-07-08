@@ -3,643 +3,279 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tableau de Bord - GTA RP ORG</title>
+<title>Gang Management — Dashboard</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 
-<body class="dark-theme">
+<body>
 
 
-<nav class="navbar">
-
-<div class="nav-container">
+<div class="app">
 
 
-    <div class="nav-logo">
+<!-- MENU -->
 
-        <a href="index.html">
+<aside class="sidebar">
 
-            <span class="logo-icon">🏢</span>
-
-            <span>
-                GTA RP ORG
-            </span>
-
-        </a>
-
-    </div>
+<div class="brand">
+<span class="brand-mark">G</span>
+Gang Management
+</div>
 
 
-
-    <ul class="nav-menu">
-
-
-        <li>
-            <a href="dashboard.html" class="nav-link active">
-                Tableau de bord
-            </a>
-        </li>
+<a href="dashboard.html" class="side-link active">
+📊 Tableau de bord
+</a>
 
 
-        <li>
-            <a href="stats.html" class="nav-link">
-                Statistiques
-            </a>
-        </li>
+<a href="membres.html" class="side-link">
+👥 Membres
+</a>
 
 
-        <li>
-            <a href="notifications.html" class="nav-link">
-                Notifications
-            </a>
-        </li>
+<a href="comptabilite.html" class="side-link">
+💰 Comptabilité
+</a>
 
 
-
-        <li class="nav-user">
-
-
-            <span id="userDisplay">
-                Chargement...
-            </span>
+<a href="activites.html" class="side-link">
+🔥 Activités
+</a>
 
 
-
-            <button 
-            id="logoutBtn"
-            class="btn btn-small">
-
-                Déconnexion
-
-            </button>
+<a href="notifications.html" class="side-link">
+🔔 Notifications
+</a>
 
 
-        </li>
+<div class="sidebar-footer">
 
-
-    </ul>
-
+<a href="login.html" class="btn btn-danger btn-block">
+Déconnexion
+</a>
 
 </div>
 
-</nav>
+
+</aside>
 
 
 
 
-
-<div class="container main-content">
-
+<!-- CONTENU -->
 
 
-<div class="dashboard-header">
+<div class="content">
 
 
 
-<div class="header-left">
+<header class="topbar">
 
+<h2>
+Dashboard
+</h2>
+
+</header>
+
+
+
+
+<main class="page">
+
+
+
+<div class="page-header">
 
 <h1>
-Tableau de Bord
+Bienvenue dans votre organisation
 </h1>
 
-
-<p id="userGreeting">
-Bienvenue
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="header-right">
-
-
-<div class="user-info-card">
-
-
-<div class="user-avatar">
-👤
-</div>
-
-
-
-<div class="user-details">
-
-
-<p id="profileUsername">
--
-</p>
-
-
-<p id="profileGrade">
--
-</p>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div 
-id="messageBox"
-class="message-box hidden">
-</div>
-
-
-
-
-
-
-
-<!-- STATISTIQUES -->
-
-
-<div class="stats-grid">
-
-
-
-<div class="stat-card">
-
-<div class="stat-header">
-
-<span class="stat-icon">
-💰
-</span>
-
-<span class="stat-label">
-Bénéfices personnels
-</span>
-
-</div>
-
-
-<div 
-class="stat-value"
-id="personalGains">
-
-0 $
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="stat-card">
-
-
-<div class="stat-header">
-
-<span class="stat-icon">
-📊
-</span>
-
-<span class="stat-label">
-Actions
-</span>
-
-</div>
-
-
-<div 
-class="stat-value"
-id="actionsTotal">
-
-0 $
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="stat-card">
-
-
-<div class="stat-header">
-
-<span class="stat-icon">
-🔫
-</span>
-
-<span class="stat-label">
-Braquages
-</span>
-
-</div>
-
-
-
-<div 
-class="stat-value"
-id="braquagesTotal">
-
-0 $
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="stat-card">
-
-
-<div class="stat-header">
-
-<span class="stat-icon">
-🛒
-</span>
-
-
-<span class="stat-label">
-Ventes
-</span>
-
-
-</div>
-
-
-
-<div 
-class="stat-value"
-id="ventesTotal">
-
-0 $
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- AJOUT ACTIVITE -->
-
-
-<section class="section">
-
-
-<div class="section-header">
-
-
-<h2>
-Ajouter une activité financière
-</h2>
-
-
-</div>
-
-
-
-
-
-<form 
-id="addEntryForm"
-class="form-container">
-
-
-
-
-
-
-<div class="form-row">
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Catégorie
-</label>
-
-
-
-<select 
-id="entryCategory"
-required>
-
-
-<option value="">
--- Choisir --
-</option>
-
-
-<option value="action">
-Action
-</option>
-
-
-<option value="braquage">
-Braquage
-</option>
-
-
-<option value="vente">
-Vente
-</option>
-
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Montant ($)
-</label>
-
-
-
-<input
-
-type="number"
-
-id="entryAmount"
-
-placeholder="5000"
-
-min="1"
-
-required
-
->
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Sous-catégorie
-</label>
-
-
-
-<select id="entrySubtype">
-
-
-
-<option value="">
--- Choisir --
-</option>
-
-
-
-<option value="ATM">
-ATM
-</option>
-
-
-
-<option value="Go Fast">
-Go Fast
-</option>
-
-
-
-<option value="Supérette">
-Supérette
-</option>
-
-
-
-<option value="Banque">
-Banque
-</option>
-
-
-
-<option value="Autre">
-Autre
-</option>
-
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Produit (vente uniquement)
-</label>
-
-
-
-<input
-
-type="text"
-
-id="entryProduct"
-
-placeholder="Produit vendu"
-
->
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Quantité
-</label>
-
-
-
-<input
-
-type="number"
-
-id="entryQuantity"
-
-value="1"
-
-min="1"
-
->
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<button
-
-type="submit"
-
-class="btn btn-primary">
-
-
-Ajouter l'activité
-
-
-</button>
-
-
-
-
-
-
-</form>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- HISTORIQUE -->
-
-
-<section class="section">
-
-
-<div class="section-header">
-
-
-<h2>
-Historique des activités
-</h2>
-
-
-
-<button
-
-id="refreshBtn"
-
-class="btn btn-small">
-
-
-Actualiser
-
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-<div
-
-id="entriesList"
-
-class="entries-list">
-
-
 <p>
-Chargement...
+Gérez votre gang RP depuis cet espace.
+</p>
+
+</div>
+
+
+
+
+
+<div class="stat-grid">
+
+
+
+<div class="stat-tile">
+
+<div class="label">
+Membres
+</div>
+
+<div class="value">
+-- 
+</div>
+
+<div class="sub">
+Membres actifs
+</div>
+
+</div>
+
+
+
+
+
+<div class="stat-tile">
+
+<div class="label">
+Argent
+</div>
+
+<div class="value">
+-- $
+</div>
+
+<div class="sub">
+Solde du gang
+</div>
+
+</div>
+
+
+
+
+
+<div class="stat-tile">
+
+<div class="label">
+Bénéfices
+</div>
+
+<div class="value">
+-- $
+</div>
+
+<div class="sub">
+Ce mois-ci
+</div>
+
+</div>
+
+
+
+
+
+<div class="stat-tile">
+
+<div class="label">
+Activités
+</div>
+
+<div class="value">
+--
+</div>
+
+<div class="sub">
+Opérations réalisées
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="grid-2">
+
+
+
+<div class="card">
+
+
+<h3>
+Dernières activités
+</h3>
+
+
+<p class="card-sub">
+Historique de l'organisation
+</p>
+
+
+
+<ul class="activity-list">
+
+
+<li>
+
+<span class="activity-dot"></span>
+
+<div>
+
+<div class="title">
+Aucune activité enregistrée
+</div>
+
+<div class="time">
+En attente de données
+</div>
+
+</div>
+
+</li>
+
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+État du gang
+</h3>
+
+
+<p class="card-sub">
+Informations générales
+</p>
+
+
+
+<div style="font-size:18px;margin-top:20px;">
+
+🟢 Organisation active
+
+</div>
+
+
+
+<p style="margin-top:15px;color:#7d867d;">
+
+Les informations apparaîtront après connexion.
+
 </p>
 
 
@@ -647,55 +283,20 @@ Chargement...
 
 
 
-</section>
-
-
-
-
-
-
 
 
 </div>
 
 
 
-
-
-
-
-
-<footer class="footer">
-
-
-<div class="container">
-
-
-<p>
-© 2026 GTA RP Organization
-</p>
+</main>
 
 
 </div>
 
 
-</footer>
 
-
-
-
-
-
-
-
-<script src="js/utils.js"></script>
-
-<script src="js/api.js"></script>
-
-<script src="js/auth.js"></script>
-
-<script src="js/dashboard.js"></script>
-
+</div>
 
 
 </body>
