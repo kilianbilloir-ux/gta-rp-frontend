@@ -55,7 +55,14 @@ async function getMe(){
 
 // Déconnexion
 async function logout(){
-    // Requête GET simplifiée
+
+    return await apiRequest(
+        "/api/logout",
+        "POST"
+    );
+
+}
+// Requête GET simplifiée
 async function apiGet(endpoint){
 
     return await apiRequest(
@@ -73,13 +80,6 @@ async function apiPost(endpoint, data){
         endpoint,
         "POST",
         data
-    );
-
-}
-
-    return await apiRequest(
-        "/api/logout",
-        "POST"
     );
 
 }
