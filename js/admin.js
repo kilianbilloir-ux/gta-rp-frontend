@@ -1,33 +1,65 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    try{
+    try {
 
-        // Vérifie que l'utilisateur est connecté
         const user = await getMe();
 
-        // Vérifie qu'il est admin
+
+        // Vérification admin
+
         if(!user.isAdmin){
-            window.location.href = "dashboard.html";
+
+            window.location.href =
+            "dashboard.html";
+
             return;
+
         }
 
-        document.getElementById("userDisplay").textContent =
+
+
+        const userDisplay =
+        document.getElementById(
+            "userDisplay"
+        );
+
+
+        if(userDisplay){
+
+            userDisplay.textContent =
             user.username;
 
+        }
+
+
+
         await loadBenefits();
+
         await loadMembers();
+
         await loadLogs();
+
+
 
     }catch(error){
 
-        window.location.href = "login.html";
+
+        window.location.href =
+        "login.html";
+
 
     }
 
 
-    // Boutons Actualiser
+
+
+    // Actualiser membres
+
     const refreshMembers =
-        document.getElementById("refreshMembersBtn");
+    document.getElementById(
+        "refreshMembersBtn"
+    );
+
 
     if(refreshMembers){
 
@@ -38,8 +70,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
 
+
+
+
+    // Actualiser logs
+
     const refreshLogs =
-        document.getElementById("refreshLogsBtn");
+    document.getElementById(
+        "refreshLogsBtn"
+    );
+
 
     if(refreshLogs){
 
@@ -50,140 +90,240 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
 
+
 });
+
+
+
+
 // ============================
-// Bénéfices de l'organisation
+// Bénéfices organisation
 // ============================
 
 async function loadBenefits(){
 
+
     try{
 
-        const data =
-            await apiGet("/api/admin/benefices");
 
+        const data =
+        await apiGet(
+            "/api/admin/benefices"
+        );
+
+
+
+        const total =
         document.getElementById(
             "totalBenefits"
-        ).textContent =
+        );
+
+
+
+        if(total){
+
+            total.textContent =
             data.benefices.total + " $";
 
+        }
+
+
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
 
+
 }
+
+
+
+
+
 // ============================
-// Chargement des membres
+// Charger les membres
 // ============================
 
 async function loadMembers(){
 
+
     const box =
-        document.getElementById("membersList");
+    document.getElementById(
+        "membersList"
+    );
+
 
     if(!box) return;
 
+
+
     try{
 
-        const data =
-            await apiGet("/api/admin/members");
 
+        const data =
+        await apiGet(
+            "/api/admin/members"
+        );
+
+
+
+        const total =
         document.getElementById(
             "totalMembers"
-        ).textContent =
+        );
+
+
+        if(total){
+
+            total.textContent =
             data.members.length;
+
+        }
+
+
 
         box.innerHTML = "";
 
+
+
         data.members.forEach(member=>{
+
 
             box.innerHTML += `
 
+
             <div class="member-card">
 
-                <h3>${member.username}</h3>
+
+                <h3>
+                    ${member.username}
+                </h3>
+
+
 
                 <p>
                     Grade :
-                    <b>${member.grade}</b>
+                    <b>
+                    ${member.grade || "Membre"}
+                    </b>
                 </p>
+
+
 
                 <p>
                     ${
                         member.isAdmin
-                        ? "👑 Administrateur"
-                        : "👤 Membre"
+                        ?
+                        "👑 Administrateur"
+                        :
+                        "👤 Membre"
                     }
                 </p>
 
-                <button
-                    class="btn btn-small"
-                    onclick="changeGrade('${member.username}')">
 
-                    Changer le grade
+
+                <button
+                class="btn btn-small"
+                onclick="changeGrade('${member.username}')">
+
+                Changer le grade
 
                 </button>
 
-             <button
-    class="btn btn-small"
-    onclick="resetPin('${member.username}')">
 
-    Reset PIN
 
-</button>
 
-<button
-    class="btn btn-small"
-    onclick="banMember('${member.username}')">
+                <button
+                class="btn btn-small"
+                onclick="resetPin('${member.username}')">
 
-    Bannir
+                Reset PIN
 
-</button>
+                </button>
 
-${
-    member.isAdmin
-    ? ""
-    :
-    `<button
-        class="btn btn-danger"
-        onclick="deleteMember('${member.username}')">
 
-        Supprimer
 
-    </button>`
+
+                <button
+                class="btn btn-small"
+                onclick="banMember('${member.username}')">
+
+                Bannir
+
+                </button>
+
+
+
+                ${
+                    member.isAdmin
+                    ?
+                    ""
+                    :
+                    `
+                    <button
+                    class="btn btn-danger"
+                    onclick="deleteMember('${member.username}')">
+
+                    Supprimer
+
+                    </button>
+                    `
+                }
+
+
 
             </div>
 
+
             `;
+
 
         });
 
+
+
     }catch(error){
 
+
         box.innerHTML =
-            "<p>Impossible de charger les membres.</p>";
+        "<p>Impossible de charger les membres.</p>";
+
 
     }
 
+
 }
+
+
+
+
+
 // ============================
-// Changer le grade
+// Modifier grade
 // ============================
 
 async function changeGrade(username){
 
-    const grade = prompt(
+
+    const grade =
+    prompt(
         "Nouveau grade :"
     );
 
+
     if(!grade) return;
 
+
+
     try{
+
 
         await apiPost(
             "/api/admin/setGrade",
@@ -193,50 +333,72 @@ async function changeGrade(username){
             }
         );
 
+
+
         showMessage(
             "Grade modifié",
             "success"
         );
 
+
+
         loadMembers();
 
+
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
+
 
 }
 
 
 
+
+
 // ============================
-// Réinitialiser le PIN
+// Reset PIN
 // ============================
 
 async function resetPin(username){
 
-    const newPin = prompt(
-        "Nouveau PIN (4 chiffres) :"
+
+    const newPin =
+    prompt(
+        "Nouveau PIN (4 chiffres)"
     );
+
+
 
     if(!newPin) return;
 
+
+
     if(!/^[0-9]{4}$/.test(newPin)){
+
 
         showMessage(
             "Le PIN doit contenir 4 chiffres",
             "error"
         );
 
+
         return;
 
     }
 
+
+
     try{
+
 
         await apiPost(
             "/api/admin/resetPin",
@@ -246,78 +408,115 @@ async function resetPin(username){
             }
         );
 
+
+
         showMessage(
             "PIN réinitialisé",
             "success"
         );
 
+
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
 
+
 }
+
+
+
+
+
 // ============================
-// Bannir un membre
+// Bannir membre
 // ============================
 
 async function banMember(username){
 
-    const minutes = prompt(
-        "Durée du bannissement (en minutes) :"
+
+    const minutes =
+    prompt(
+        "Durée du bannissement en minutes :"
     );
+
+
 
     if(!minutes) return;
 
+
+
     try{
+
 
         await apiPost(
             "/api/admin/ban",
             {
                 username,
-                minutes: Number(minutes)
+                minutes:Number(minutes)
             }
         );
 
+
+
         showMessage(
-            username + " a été banni.",
+            username + " a été banni",
             "success"
         );
 
+
+
         loadMembers();
 
+
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
+
 
 }
 
 
 
+
+
 // ============================
-// Supprimer un membre
+// Supprimer membre
 // ============================
 
 async function deleteMember(username){
 
-    const confirmDelete = confirm(
+
+    const confirmDelete =
+    confirm(
         "Supprimer définitivement " +
         username +
         " ?"
     );
 
+
+
     if(!confirmDelete) return;
 
+
+
     try{
+
 
         await apiPost(
             "/api/admin/deleteMember",
@@ -326,75 +525,111 @@ async function deleteMember(username){
             }
         );
 
+
+
         showMessage(
             "Membre supprimé",
             "success"
         );
 
+
+
         loadMembers();
 
+
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
 
+
 }
+
+
+
+
+
 // ============================
-// Chargement des logs
+// Charger les logs
 // ============================
 
 async function loadLogs(){
 
+
     const box =
-        document.getElementById(
-            "logsList"
-        );
+    document.getElementById(
+        "logsList"
+    );
+
 
     if(!box) return;
 
+
+
     try{
 
+
         const data =
-            await apiGet(
-                "/api/admin/logs"
-            );
+        await apiGet(
+            "/api/admin/logs"
+        );
+
+
 
         box.innerHTML = "";
 
-        if(data.logs.length === 0){
+
+
+        if(!data.logs ||
+           data.logs.length === 0){
+
 
             box.innerHTML =
-                "<p>Aucun log disponible.</p>";
+            "<p>Aucun log disponible.</p>";
+
 
             return;
 
         }
 
+
+
+
         data.logs.forEach(log=>{
 
-            const date =
-                new Date(log.ts)
-                .toLocaleString("fr-FR");
 
             box.innerHTML += `
 
+
             <div class="log-card">
 
-                <h3>${log.action}</h3>
+
+                <h3>
+                    ${log.action}
+                </h3>
+
 
                 <p>
                     Utilisateur :
                     <b>${log.actor}</b>
                 </p>
 
+
                 <p>
                     Date :
-                    ${date}
+                    ${
+                    new Date(log.ts)
+                    .toLocaleString("fr-FR")
+                    }
                 </p>
+
 
                 <pre>
 ${JSON.stringify(
@@ -404,51 +639,111 @@ ${JSON.stringify(
 )}
                 </pre>
 
+
             </div>
+
 
             `;
 
+
         });
 
+
+
+        const count =
         document.getElementById(
             "activitiesCount"
-        ).textContent =
+        );
+
+
+        if(count){
+
+            count.textContent =
             data.logs.length;
+
+        }
+
+
 
     }catch(error){
 
+
         box.innerHTML =
-            "<p>Impossible de charger les logs.</p>";
+        "<p>Impossible de charger les logs.</p>";
+
 
     }
 
+
 }
+
+
+
+
+
 // ============================
-// Gestion des onglets
+// Gestion onglets admin
 // ============================
 
-const tabs = document.querySelectorAll(".tab-btn");
+const tabs =
+document.querySelectorAll(
+    ".tab-btn"
+);
 
-tabs.forEach(tab => {
 
-    tab.addEventListener("click", () => {
 
-        document
+tabs.forEach(tab=>{
+
+
+    tab.addEventListener(
+        "click",
+        ()=>{
+
+
+            document
             .querySelectorAll(".tab-btn")
-            .forEach(btn => btn.classList.remove("active"));
+            .forEach(btn=>
+                btn.classList.remove("active")
+            );
 
-        document
+
+
+            document
             .querySelectorAll(".tab-content")
-            .forEach(content => content.classList.remove("active"));
+            .forEach(content=>
+                content.classList.remove("active")
+            );
 
-        tab.classList.add("active");
 
-        const target = tab.dataset.tab;
 
-        document
-            .getElementById(target)
-            .classList.add("active");
+            tab.classList.add(
+                "active"
+            );
 
-    });
+
+
+            const target =
+            tab.dataset.tab;
+
+
+
+            const section =
+            document.getElementById(
+                target
+            );
+
+
+            if(section){
+
+                section.classList.add(
+                    "active"
+                );
+
+            }
+
+
+        }
+    );
+
 
 });
