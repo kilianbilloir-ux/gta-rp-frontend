@@ -1,0 +1,231 @@
+/* ==========================
+   PAGE CONNEXION / INSCRIPTION
+========================== */
+
+.auth-container{
+
+    min-height:80vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 15px;
+
+}
+
+
+.auth-box{
+
+    background:#151515;
+
+    border:1px solid #292929;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    width:100%;
+
+    max-width:450px;
+
+}
+
+
+.auth-header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.auth-header h1{
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+}
+
+
+.auth-header p{
+
+    color:#aaa;
+
+}
+
+
+/* FORMULAIRE */
+
+.auth-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    color:#ddd;
+
+}
+
+
+.form-group small{
+
+    color:#777;
+
+    margin-top:-10px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* CHECKBOX */
+
+.checkbox{
+
+    flex-direction:row;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.checkbox input{
+
+    width:auto;
+
+    margin:0;
+
+}
+
+
+
+/* BOUTON */
+
+.btn-full{
+
+    width:100%;
+
+    margin-top:10px;
+
+}
+
+
+
+/* FOOTER AUTH */
+
+.auth-footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#aaa;
+
+}
+
+
+.auth-footer a{
+
+    color:#00ff88;
+
+}
+
+
+.auth-back{
+
+    text-align:center;
+
+    margin-top:20px;
+
+}
+
+
+.auth-back a{
+
+    color:#777;
+
+}
+
+
+.auth-back a:hover{
+
+    color:#00ff88;
+
+}
+
+
+/* CHARGEMENT */
+
+.loader{
+
+    display:inline-block;
+
+    width:15px;
+
+    height:15px;
+
+    border:3px solid white;
+
+    border-top-color:transparent;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .auth-box{
+
+        padding:20px;
+
+    }
+
+
+    .auth-header h1{
+
+        font-size:26px;
+
+    }
+
+}
