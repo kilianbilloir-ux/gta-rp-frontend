@@ -47,7 +47,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-});
+    const markBtn =
+    document.getElementById(
+        "markAllReadBtn"
+    );
+
+
+    if(markBtn){
+
+        markBtn.addEventListener(
+            "click",
+            markAllRead
+        );
+
+    });
 
 
 
@@ -188,5 +201,38 @@ if(logoutBtn){
         }
     );
 
+
+}
+// ============================
+// Marquer toutes les notifications comme lues
+// ============================
+
+async function markAllRead(){
+
+    try{
+
+        await apiPost(
+            "/api/notifications/readAll",
+            {}
+        );
+
+
+        showMessage(
+            "Toutes les notifications sont lues",
+            "success"
+        );
+
+
+        loadNotifications();
+
+
+    }catch(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+    }
 
 }
