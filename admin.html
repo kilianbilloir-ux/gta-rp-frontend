@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneau Admin - GTA RP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span class="logo-icon">🏢</span>
+                    <span>GTA RP ORG</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="admin.html" class="nav-link active">Admin Panel</a></li>
+                <li><a href="members.html" class="nav-link">Membres</a></li>
+                <li><a href="stats.html" class="nav-link">Statistiques</a></li>
+                <li class="nav-user">
+                    <span id="userDisplay">Admin</span>
+                    <button id="logoutBtn" class="btn btn-small">Déconnexion</button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <!-- Admin Header -->
+        <div class="admin-header">
+            <h1>Panneau d'Administration</h1>
+            <p>Gérez votre organisation GTA RP</p>
+        </div>
+
+        <!-- Messages -->
+        <div id="messageBox" class="message-box hidden"></div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">👥</span>
+                    <span class="stat-label">Membres Total</span>
+                </div>
+                <div class="stat-value" id="totalMembers">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">💰</span>
+                    <span class="stat-label">Bénéfices Org</span>
+                </div>
+                <div class="stat-value" id="totalBenefits">$0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">⚠️</span>
+                    <span class="stat-label">Membres Bannis</span>
+                </div>
+                <div class="stat-value" id="bannedCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-icon">📋</span>
+                    <span class="stat-label">Activités</span>
+                </div>
+                <div class="stat-value" id="activitiesCount">0</div>
+            </div>
+        </div>
+
+        <!-- Admin Tabs -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="overview">Vue d'ensemble</button>
+            <button class="tab-btn" data-tab="members">Gestion Membres</button>
+            <button class="tab-btn" data-tab="logs">Logs</button>
+        </div>
+
+        <!-- Tab: Overview -->
+        <div id="overview" class="tab-content active">
+            <section class="section">
+                <h2>Vue d'ensemble</h2>
+                <div class="dashboard-grid">
+                    <div class="info-card">
+                        <h3>🔔 Notifications Récentes</h3>
+                        <div id="recentNotifications" class="notifications-list">
+                            <p class="empty">Aucune notification</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h3>📊 Statistiques Rapides</h3>
+                        <div class="quick-stats">
+                            <p>Membres actifs aujourd'hui: <strong id="activeToday">0</strong></p>
+                            <p>Transactions aujourd'hui: <strong id="transactionsToday">0</strong></p>
+                            <p>Gains aujourd'hui: <strong id="gainsToday">$0</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab: Members -->
+        <div id="members" class="tab-content">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Gestion des Membres</h2>
+                    <button id="refreshMembersBtn" class="btn btn-small">Actualiser</button>
+                </div>
+                <div id="membersList" class="members-table">
+                    <p class="loading">Chargement...</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab: Logs -->
+        <div id="logs" class="tab-content">
+            <section class="section">
+                <div class="section-header">
+                    <h2>Logs Administrateur</h2>
+                    <button id="refreshLogsBtn" class="btn btn-small">Actualiser</button>
+                </div>
+                <div id="logsList" class="logs-list">
+                    <p class="loading">Chargement...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal pour actions de membres -->
+    <div id="memberModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Gestion du membre</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="memberModalBody" class="modal-body">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GTA RP Organization. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
