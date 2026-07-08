@@ -424,3 +424,32 @@ ${JSON.stringify(
     }
 
 }
+// ============================
+// Gestion des onglets
+// ============================
+
+const tabs = document.querySelectorAll(".tab-btn");
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        document
+            .querySelectorAll(".tab-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+        document
+            .querySelectorAll(".tab-content")
+            .forEach(content => content.classList.remove("active"));
+
+        tab.classList.add("active");
+
+        const target = tab.dataset.tab;
+
+        document
+            .getElementById(target)
+            .classList.add("active");
+
+    });
+
+});
