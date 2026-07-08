@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
+
     const markBtn =
     document.getElementById(
         "markAllReadBtn"
@@ -55,13 +56,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if(markBtn){
 
+
         markBtn.addEventListener(
             "click",
             markAllRead
-            );
         );
 
-    });
+
+    }
+
+
+
+    const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+    if(logoutBtn){
+
+
+        logoutBtn.addEventListener(
+            "click",
+            async()=>{
+
+
+                await logout();
+
+
+                window.location.href =
+                "login.html";
+
+
+            }
+        );
+
+
+    }
+
+
+});
 
 
 
@@ -174,48 +208,20 @@ async function loadNotifications(){
 
 
 // ============================
-// Déconnexion
-// ============================
-
-const logoutBtn =
-document.getElementById(
-    "logoutBtn"
-);
-
-
-
-if(logoutBtn){
-
-
-    logoutBtn.addEventListener(
-        "click",
-        async()=>{
-
-
-            await logout();
-
-
-            window.location.href =
-            "login.html";
-
-
-        }
-    );
-
-
-}
-// ============================
 // Marquer toutes les notifications comme lues
 // ============================
 
 async function markAllRead(){
 
+
     try{
+
 
         await apiPost(
             "/api/notifications/readAll",
             {}
         );
+
 
 
         showMessage(
@@ -224,16 +230,21 @@ async function markAllRead(){
         );
 
 
+
         loadNotifications();
 
 
+
     }catch(error){
+
 
         showMessage(
             error.message,
             "error"
         );
 
+
     }
+
 
 }
