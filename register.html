@@ -16,9 +16,6 @@
 <body>
 
 
-
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
 
@@ -31,7 +28,6 @@ G
 GTA RP ORG
 
 </div>
-
 
 
 <div class="nav-actions">
@@ -48,11 +44,6 @@ Accueil
 
 
 
-
-
-<!-- INSCRIPTION -->
-
-
 <main class="auth-page">
 
 
@@ -67,7 +58,7 @@ Créer un compte
 
 
 <p class="auth-sub">
-Rejoignez une organisation GTA RP
+Rejoignez votre organisation GTA RP
 </p>
 
 
@@ -86,7 +77,8 @@ Nom d'utilisateur
 
 <input 
 type="text"
-placeholder="Votre pseudo">
+placeholder="Votre pseudo"
+required>
 
 </div>
 
@@ -102,7 +94,8 @@ Email
 
 <input 
 type="email"
-placeholder="Votre email">
+placeholder="Votre email"
+required>
 
 </div>
 
@@ -116,7 +109,15 @@ placeholder="Votre email">
 Mot de passe
 </label>
 
-<input type="password" placeholder="Code à 4 chiffres" maxlength="4" pattern="[0-9]{4}">
+<input 
+type="password"
+placeholder="Code à 4 chiffres"
+maxlength="4"
+pattern="[0-9]{4}"
+inputmode="numeric"
+required>
+
+</div>
 
 
 
@@ -153,7 +154,6 @@ Se connecter
 
 
 </main>
-
 
 
 
