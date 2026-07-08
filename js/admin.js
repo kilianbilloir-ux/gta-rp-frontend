@@ -156,11 +156,6 @@ ${
         Supprimer
 
     </button>`
-            
-                    
-
-                    </button>`
-                }
 
             </div>
 
