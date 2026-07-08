@@ -319,3 +319,354 @@ img{
     background:#2a2f37;
 
 }
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.section{
+
+    padding:100px 0;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:60px;
+
+    font-weight:700;
+
+}
+
+.about-grid,
+.features-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+.about-card,
+.feature-item{
+
+    background:#171a20;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:18px;
+
+    padding:35px;
+
+    transition:.3s;
+
+}
+
+.about-card:hover,
+.feature-item:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#30d158;
+
+    box-shadow:0 15px 35px rgba(48,209,88,.18);
+
+}
+
+.card-icon{
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+.about-card h3,
+.feature-item h3{
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+.about-card p,
+.feature-item p{
+
+    color:#b8b8b8;
+
+    line-height:1.7;
+
+}
+
+.feature-number{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:#30d158;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+/* ==========================================================
+   CTA
+========================================================== */
+
+.cta-section{
+
+    text-align:center;
+
+    background:#111418;
+
+}
+
+.cta-section h2{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+.cta-section p{
+
+    color:#c7c7c7;
+
+    margin-bottom:35px;
+
+    font-size:20px;
+
+}
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer{
+
+    background:#0d0f13;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+    padding:40px 0;
+
+    text-align:center;
+
+    color:#888;
+
+}
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:900px){
+
+.hero-title{
+
+    font-size:48px;
+
+}
+
+.hero-subtitle{
+
+    font-size:18px;
+
+}
+
+.nav-menu{
+
+    display:none;
+
+}
+
+.hero-buttons{
+
+    flex-direction:column;
+
+}
+
+.btn{
+
+    width:100%;
+
+}
+
+.section-title{
+
+    font-size:32px;
+
+}
+
+}
+/* ==========================================================
+   EFFETS MODERNES
+========================================================== */
+
+.about-card,
+.feature-item{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.about-card::before,
+.feature-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(48,209,88,.12),
+        transparent
+    );
+
+    transition:.7s;
+
+}
+
+.about-card:hover::before,
+.feature-item:hover::before{
+
+    left:100%;
+
+}
+
+.hero-title{
+
+    text-shadow:
+    0 0 25px rgba(48,209,88,.25);
+
+}
+
+.btn{
+
+    transition:
+    transform .25s,
+    box-shadow .25s,
+    background .25s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.section{
+
+    position:relative;
+
+}
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#30d158;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#47db72;
+
+}
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+.hero-content{
+
+    animation:fadeUp 1s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.about-card,
+.feature-item{
+
+    animation:fadeCard .8s ease;
+
+}
+
+@keyframes fadeCard{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
