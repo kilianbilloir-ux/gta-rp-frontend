@@ -1,102 +1,64 @@
-const API_URL = "TON_URL_FIREBASE_FUNCTIONS";
+// URL de ton API Firebase Functions
+const API_URL = "https://TON-PROJET.cloudfunctions.net/api";
 
+
+// Fonction générale pour communiquer avec le serveur
 async function apiRequest(endpoint, method = "GET", data = null) {
+
     const options = {
         method,
-        credentials: "include",
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        credentials: "include"
     };
+
 
     if (data) {
         options.body = JSON.stringify(data);
     }
 
-    const response = await fetch(API_URL + endpoint, options);
 
-    const result = await response.json();
+    const response = await fetch(
+        API_URL + endpoint,
+        options
+    );
+
+
+    const result = await response.json()
+        .catch(() => ({
+            error: "Erreur serveur"
+        }));
+
 
     if (!response.ok) {
-        throw new Error(result.error || "Erreur API");
+        throw new Error(
+            result.error || "Une erreur est survenue"
+        );
     }
+
 
     return result;
 }
 
 
-// Auth
-function login(username, pin) {
-    return apiRequest("/api/login", "POST", {
-        username,
-        pin
-    });
-}
+// Vérifier l'utilisateur connecté
+async function getMe(){
 
-function register(username, pin) {
-    return apiRequest("/api/register", "POST", {
-        username,
-        pin
-    });
-}
+    return await apiRequest(
+        "/api/me",
+        "GET"
+    );
 
-function logout() {
-    return apiRequest("/api/logout", "POST");
 }
 
 
-// Utilisateur
-function getMe() {
-    return apiRequest("/api/me");
-}
+// Déconnexion
+async function logout(){
 
+    return await apiRequest(
+        "/api/logout",
+        "POST"
+    );
 
-// Entrées financières
-function addEntry(entry) {
-    return apiRequest("/api/entry/add", "POST", entry);
-}
-
-function getEntries() {
-    return apiRequest("/api/entry/list");
-}
-
-function getTotals() {
-    return apiRequest("/api/entry/totals");
-}
-
-
-// Notifications
-function getNotifications() {
-    return apiRequest("/api/notifications");
-}
-
-
-// Admin
-function getBenefices() {
-    return apiRequest("/api/admin/benefices");
-}
-
-function getMembers() {
-    return apiRequest("/api/admin/members");
-}
-
-function setGrade(username, grade) {
-    return apiRequest("/api/admin/setGrade", "POST", {
-        username,
-        grade
-    });
-}
-
-function resetPin(username, newPin) {
-    return apiRequest("/api/admin/resetPin", "POST", {
-        username,
-        newPin
-    });
-}
-
-function banUser(username, minutes) {
-    return apiRequest("/api/admin/ban", "POST", {
-        username,
-        minutes
-    });
 }
