@@ -230,37 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
-
-// ============================
-// Affichage des messages
-// ============================
-
-function showMessage(message, type){
-
-
-    const box =
-    document.getElementById(
-        "messageBox"
-    );
-
-
-
-    if(!box) return;
-
-
-
-    box.textContent =
-    message;
-
-
-
-    box.className =
-    "message-box " + type;
-
-
-
     setTimeout(()=>{
 
 
