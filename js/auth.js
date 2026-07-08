@@ -126,7 +126,6 @@ if(logoutBtn){
 
 
 // Affichage des messages
-function showMessage(message, type){
 
     const box = document.getElementById("messageBox");
 
