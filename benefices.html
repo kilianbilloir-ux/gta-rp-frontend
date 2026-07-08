@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GTA RP ORG — Bénéfices</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<aside class="sidebar">
+
+<div class="brand">
+<span class="brand-mark">G</span> GTA RP ORG
+</div>
+
+
+<a href="dashboard.html" class="side-link">
+Tableau de bord
+</a>
+
+<a href="benefices.html" class="side-link active">
+Bénéfices
+</a>
+
+<a href="activites.html" class="side-link">
+Activités
+</a>
+
+<a href="statistiques.html" class="side-link">
+Statistiques
+</a>
+
+<a href="membres.html" class="side-link">
+Membres
+</a>
+
+<a href="notifications.html" class="side-link">
+Notifications
+</a>
+
+
+<div class="sidebar-footer">
+<a href="login.html" class="btn btn-danger btn-block btn-sm">
+Déconnexion
+</a>
+</div>
+
+
+</aside>
+
+
+
+
+
+<div class="content">
+
+
+<header class="topbar">
+
+<span class="brand">
+<span class="brand-mark">G</span> GTA RP ORG
+</span>
+
+</header>
+
+
+
+
+
+<main class="page">
+
+
+<div class="page-header">
+
+<h1>Ajouter un bénéfice</h1>
+
+<p>
+Enregistre les revenus de ton organisation.
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+
+
+<div class="field">
+
+<label>Catégorie</label>
+
+<select id="categorie" class="search-input">
+
+<option value="">
+Choisir une catégorie
+</option>
+
+<option value="actions">
+Actions
+</option>
+
+<option value="ventes">
+Ventes
+</option>
+
+<option value="braquage">
+Braquage
+</option>
+
+
+</select>
+
+</div>
+
+
+
+
+
+<div class="field">
+
+<label>Activité</label>
+
+
+<select id="activite" class="search-input">
+
+<option>
+Choisir une catégorie
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="field" id="quantiteBox">
+
+<label>Quantité vendue</label>
+
+<input 
+id="quantite"
+class="search-input"
+type="number"
+placeholder="Ex : 10">
+
+</div>
+
+
+
+
+
+<div class="field">
+
+<label>Argent récolté</label>
+
+
+<input 
+class="search-input"
+type="number"
+placeholder="Ex : 5000">
+
+
+</div>
+
+
+
+
+
+<button class="btn btn-primary btn-block">
+
+Ajouter le bénéfice
+
+</button>
+
+
+
+</div>
+
+
+
+</main>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+const categorie = document.getElementById("categorie");
+
+const activite = document.getElementById("activite");
+
+const quantiteBox = document.getElementById("quantiteBox");
+
+
+
+
+
+const listes = {
+
+
+actions:[
+
+"ATM",
+
+"Go Fast",
+
+"Cambu"
+
+],
+
+
+ventes:[
+
+"Crack",
+
+"Cannabis",
+
+"Cocaïne",
+
+"Héroïne",
+
+"Spore X",
+
+"Carte prépayée",
+
+"Tranq",
+
+"Meth",
+
+"Purple",
+
+"Mecicana",
+
+"Ecstasy",
+
+"Lean",
+
+"B-Magic"
+
+],
+
+
+braquage:[
+
+"Supérette",
+
+"Fleeca",
+
+"Armurerie"
+
+]
+
+
+};
+
+
+
+
+
+
+
+categorie.addEventListener("change",()=>{
+
+
+activite.innerHTML="";
+
+
+let choix = listes[categorie.value];
+
+
+
+choix.forEach(element=>{
+
+
+let option=document.createElement("option");
+
+option.textContent=element;
+
+activite.appendChild(option);
+
+
+});
+
+
+
+
+
+if(categorie.value==="ventes"){
+
+
+quantiteBox.style.display="block";
+
+
+}else{
+
+
+quantiteBox.style.display="none";
+
+
+}
+
+
+});
+
+
+
+
+</script>
+
+
+</body>
+</html>
