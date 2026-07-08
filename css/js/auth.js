@@ -1,122 +1,116 @@
-// Vérifie si l'utilisateur est connecté
-async function checkAuth() {
-    try {
-        const user = await getMe();
+document.addEventListener("DOMContentLoaded", () => {
 
-        return user;
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
 
-    } catch (error) {
-        window.location.href = "login.html";
-        return null;
-    }
-}
+    // Connexion
+    if (loginForm) {
 
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-// Vérifie si l'utilisateur est administrateur
-async function checkAdmin() {
-    try {
-        const user = await getMe();
+            const username = document.getElementById("username").value;
+            const pin = document.getElementById("pin").value;
 
-        if (!user.isAdmin) {
-            window.location.href = "dashboard.html";
-            return false;
-        }
+            try {
 
-        return true;
+                const response = await apiRequest("/api/login", "POST", {
+                    username,
+                    pin
+                });
 
-    } catch (error) {
-        window.location.href = "login.html";
-        return false;
-    }
-}
+                if (response.ok) {
+                    window.location.href = "dashboard.html";
+                }
 
-
-// Connexion
-async function handleLogin(event) {
-
-    event.preventDefault();
-
-    const username =
-        document.getElementById("username").value;
-
-    const pin =
-        document.getElementById("pin").value;
-
-
-    try {
-
-        const result = await login(username, pin);
-
-
-        if (result.ok) {
-
-            if (result.isAdmin) {
-                window.location.href = "admin.html";
-            } else {
-                window.location.href = "dashboard.html";
+            } catch (error) {
+                showMessage(error.message, "error");
             }
 
-        }
-
-    } catch(error) {
-
-        alert(error.message);
-
-    }
-}
-
-
-// Inscription
-async function handleRegister(event) {
-
-    event.preventDefault();
-
-
-    const username =
-        document.getElementById("username").value;
-
-    const pin =
-        document.getElementById("pin").value;
-
-
-    try {
-
-        const result =
-            await register(username, pin);
-
-
-        if(result.ok) {
-
-            alert("Compte créé avec succès");
-
-            window.location.href =
-                "login.html";
-        }
-
-
-    } catch(error) {
-
-        alert(error.message);
-
+        });
     }
 
-}
+
+    // Inscription
+    if (registerForm) {
+
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
 
-// Déconnexion
-async function handleLogout() {
+            const username =
+                document.getElementById("username").value;
 
-    try {
+            const pin =
+                document.getElementById("pin").value;
 
-        await logout();
+            const confirmPin =
+                document.getElementById("confirmPin").value;
 
-        window.location.href =
-            "login.html";
 
-    } catch(error) {
+            if (pin !== confirmPin) {
+                showMessage(
+                    "Les PIN ne correspondent pas",
+                    "error"
+                );
+                return;
+            }
 
-        console.error(error);
+
+            try {
+
+                const response = await apiRequest(
+                    "/api/register",
+                    "POST",
+                    {
+                        username,
+                        pin
+                    }
+                );
+
+
+                if (response.ok) {
+
+                    showMessage(
+                        "Compte créé avec succès",
+                        "success"
+                    );
+
+
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1500);
+
+                }
+
+
+            } catch(error) {
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        });
 
     }
+
+});
+
+
+// Affichage des messages
+function showMessage(message, type){
+
+    const box = document.getElementById("messageBox");
+
+    if(!box) return;
+
+
+    box.textContent = message;
+
+    box.className =
+        "message-box " + type;
 
 }
